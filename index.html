@@ -480,15 +480,21 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
 /* Travel layout, Nov 16 (pm): every section is a heading, a three-column row, then full-width blocks.
    The header art sits beside the title, jump links and first heading only; the columns start below it. */
 @media (min-width: 900px) {
-  #travel { --artw: clamp(170px, 28vw, 300px); }
+  #travel { --artw: clamp(170px, 26vw, 264px); }
+  #travel .lead .head .art.roomy { width: var(--artw); }
   #travel .lead { position: relative; display: flex; flex-direction: column; min-height: calc(var(--artw) * 900 / 838 + 4px); }
   #travel .lead .head { position: static; margin-bottom: 30px; }
   #travel .lead .head > div:first-child, #travel .lead .jump { max-width: calc(100% - var(--artw) - 32px); }
-  #travel .lead .sec-h.first { margin-top: auto; padding-top: 8px; }
+  #travel .lead .jump { margin-bottom: clamp(40px, 6vw, 64px); }
+  #travel .lead .sec-h.first { margin-top: auto; }
 }
 @media (min-width: 760px) {
   #travel .cols, #travel .cols.arrive { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; column-gap: clamp(24px, 4vw, 56px); }
   #travel .key, #travel .acc { max-width: none; }
+}
+/* Travel accordions: the heavy plum top rule read as a section divider that only some sections had; use the light rule so they read as rows */
+#travel .acc details:first-child { border-top-color: var(--rule); }
+@media (min-width: 760px) {
   #travel .acc .in > p, #travel .acc .in > .small { max-width: var(--col); }
   #travel .acc .in .apps, #travel .acc .in .steps { max-width: none; }
 }
