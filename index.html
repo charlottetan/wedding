@@ -487,10 +487,9 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
   #eat .head > div:first-child, #things-to-do .head > div:first-child, #seattle .head > div:first-child { max-width: var(--col); }
   #eat .head .art, #things-to-do .head .art, #seattle .head .art { position: static; flex: none; }
   .acc, .ask, .rsvp, #singapore .schedule { max-width: none; }
-  /* lists inside accordions run two across */
-  #eat .acc .in ul.plain, #things-to-do .acc .in ul.plain { max-width: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(28px, 4vw, 56px); }
-  #eat .acc .in ul.plain li:nth-child(2), #things-to-do .acc .in ul.plain li:nth-child(2) { border-top: 1px solid var(--rule); }
-  #eat .acc .in > ul.plain:last-child li:nth-last-child(2):nth-child(odd), #things-to-do .acc .in > ul.plain:last-child li:nth-last-child(2):nth-child(odd) { border-bottom: 0; }
+  /* lists inside accordions: one item per row; the rule spans the page, the text stays at the reading measure */
+  #eat .acc .in ul.plain, #things-to-do .acc .in ul.plain { max-width: none; }
+  #eat .acc .in ul.plain li, #things-to-do .acc .in ul.plain li { padding-right: max(0px, calc(100% - var(--col))); }
   /* Singapore: What to wear as a band (tiles left, notes right); the four info blocks four across */
   #singapore .attire { max-width: none; padding: 24px 28px; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 56px); align-items: start; }
   #singapore .attire h3 { grid-column: 1 / -1; }
