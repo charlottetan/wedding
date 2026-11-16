@@ -461,6 +461,14 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
   #travel .head > div:first-child, #things-to-do .head > div:first-child, #eat .head > div:first-child { max-width: calc(100% - 30vw); }
   #singapore .head .art, #travel .head .art, #things-to-do .head .art, #eat .head .art { position: absolute; top: 0; right: 0; pointer-events: none; }
 }
+/* --- layout fixes, Nov 16 --- */
+/* Travel: the first row of columns sits beside the hanging header art, so keep it to the text column (was running under the shophouses and covering the weather icon) */
+@media (min-width: 900px) { #travel .sec-h.first + .cols { max-width: var(--col); } }
+/* even spacing: no trailing paragraph margin inside column items, and a tighter gap when they stack, so items in a section read as a group and section headings carry the big breaks */
+.cols > div > :last-child { margin-bottom: 0; }
+@media (max-width: 640px) { .cols { row-gap: 28px; } }
+/* no rule between a page header and its first block on any subpage (Eat and Do were the only ones with one) */
+.head + .acc > details:first-child { border-top: 0; }
 /* the pre-retune magenta, wherever it is still drawn, becomes the palette orchid */
 [fill="#a05aa6"] { fill: var(--orchid); }
 .wave [fill="#a05aa6"] { fill-opacity: .26; }
