@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charlotte &amp; Preston</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a painted invitation laid flat. Ivory cotton paper, a centred title between two
+   watercolour vignettes (Singapore left, Seattle right), then quiet left-set bands of detail
+   separated by flowing washes. One visual world, so the page stays light by choice. */
+:root {
+  color-scheme: light;
+  --paper: #f8f4ea;
+  --plum: #3a1f3d;
+  --plum-soft: #6a5272;
+  --orchid: #7a3a86;
+  --lilac: #dcc1e3;
+  --eucalyptus: #aeb27c;
+  --slate: #7ba0c2;
+  --rule: rgba(58, 31, 61, .22);
+  --display: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
+  --body: "Work Sans", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --measure: 34rem;
+  --gutter: clamp(20px, 6vw, 72px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' seed='2'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .22 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23p)'/%3E%3C/svg%3E");
+  color: var(--plum);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+svg { display: block; max-width: 100%; height: auto; }
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+a { color: var(--orchid); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--orchid); outline-offset: 3px; }
+
+.nav {
+  position: sticky; top: 0; z-index: 5;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav .bar { max-width: 68rem; margin: 0 auto; padding: 9px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 10px 24px; }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 26px; min-width: 0; }
+.nav a.nav-rsvp { flex: none; background: var(--plum); color: var(--paper); padding: 10px 20px; border-radius: 2px; letter-spacing: .2em; }
+.nav a.nav-rsvp:hover { background: var(--orchid); color: var(--paper); }
+.nav a { color: var(--plum); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
+.nav a:hover { color: var(--orchid); }
+
+.wrap { max-width: 68rem; margin-inline: auto; padding-inline: var(--gutter); }
+
+/* Hero */
+.hero { padding-block: clamp(44px, 8vw, 88px) clamp(8px, 2vw, 20px); text-align: center; }
+.eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--plum-soft); margin: 0 0 18px; }
+.names {
+  font-family: var(--display); font-weight: 500; color: var(--plum);
+  font-size: clamp(2.9rem, 10.5vw, 6.6rem); line-height: .98; letter-spacing: -.005em;
+  margin: 0; text-wrap: balance;
+}
+.names em { font-style: italic; font-weight: 400; color: var(--orchid); padding-inline: .06em; }
+.cities { font-family: var(--display); font-style: italic; font-size: clamp(1.35rem, 3.6vw, 2rem); margin: 20px 0 0; }
+.cities span { font-style: normal; color: var(--orchid); padding-inline: .3em; }
+.lede { max-width: var(--measure); margin: 18px auto 0; color: var(--plum-soft); }
+.hero > p { margin-inline: auto; }
+.place svg { overflow: visible; }
+.place-img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+
+.pair { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: clamp(8px, 2vw, 28px); margin-top: clamp(28px, 5vw, 56px); }
+.place { margin: 0; }
+.place figcaption { padding-top: 6px; }
+.city { font-family: var(--display); font-weight: 500; font-size: clamp(1.9rem, 4.6vw, 2.8rem); line-height: 1.05; margin: 0 0 6px; }
+.place p { margin: 0; }
+.when { font-weight: 500; letter-spacing: .04em; }
+.small { font-size: 14.5px; color: var(--plum-soft); }
+.clock { font-variant-numeric: tabular-nums; margin-top: 10px !important; }
+.cross { align-self: center; display: grid; justify-items: center; gap: 4px; color: var(--plum-soft); }
+.cross b { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; color: var(--orchid); }
+.cross span { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; max-width: 8em; }
+
+.wave { width: 100%; height: clamp(46px, 7vw, 84px); }
+
+/* Sections */
+section { padding-block: clamp(28px, 5vw, 56px) clamp(36px, 6vw, 68px); }
+.head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 12px 32px; margin-bottom: 30px; }
+.head .art { width: clamp(120px, 22vw, 230px); }
+.head .art.wide { width: clamp(150px, 28vw, 300px); }
+@media (min-width: 1100px) {
+  .head { position: relative; display: block; }
+  .head > div:first-child { max-width: calc(100% - 330px); }
+  .head .art { position: absolute; top: 0; right: 0; pointer-events: none; }
+}
+h2 { font-family: var(--display); font-weight: 500; font-size: clamp(2.3rem, 7vw, 3.6rem); line-height: 1.02; margin: 0 0 8px; text-wrap: balance; }
+.sub { color: var(--plum-soft); margin: 0; max-width: var(--measure); }
+h3 { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 10px; }
+p { max-width: var(--measure); }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 36px clamp(28px, 5vw, 64px); }
+.cols p, .cols ul { margin-top: 0; }
+.cols.arrive { grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); max-width: 52rem; }
+.tt-head { margin-bottom: 24px; }
+.tt-head .sec-h { margin-top: 0; }
+ul.plain { list-style: none; padding: 0; margin: 0; max-width: var(--measure); }
+ul.plain li { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+ul.plain li:first-child { border-top: 1px solid var(--rule); }
+
+.schedule { list-style: none; margin: 0 0 44px; padding: 0; border-top: 1px solid var(--plum); max-width: 46rem; }
+.schedule li { display: grid; align-items: center; grid-template-columns: 7.5rem 40px 1fr; gap: 4px 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.time { font-family: var(--display); font-weight: 500; font-size: 1.75rem; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
+.schedule strong { display: block; font-weight: 600; }
+.schedule span.small { display: block; }
+.tag { display: inline-block; margin-top: 8px; padding: 2px 12px; border: 1px solid var(--orchid); color: var(--orchid); border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+
+.rsvp { background: rgba(255, 255, 255, .5); border: 1px solid var(--rule); box-shadow: 0 0 0 6px rgba(220, 193, 227, .18); padding: clamp(24px, 5vw, 44px); max-width: 46rem; }
+.rsvp p:first-of-type { margin-top: 0; }
+.btn { display: inline-block; margin-top: 10px; padding: 14px 26px; background: var(--plum); color: var(--paper); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; border-radius: 2px; }
+.btn:hover { background: var(--orchid); }
+.btn[aria-disabled="true"] { background: transparent; color: var(--plum-soft); border: 1px solid var(--rule); cursor: default; }
+
+.faq { max-width: 46rem; margin: 0; }
+.faq div { padding: 20px 0; border-bottom: 1px solid var(--rule); }
+.faq div:first-child { border-top: 1px solid var(--plum); }
+.faq dt { font-family: var(--display); font-weight: 600; font-size: 1.45rem; line-height: 1.2; margin-bottom: 6px; }
+.faq dd { margin: 0; color: var(--plum-soft); }
+
+footer { padding-block: 20px 60px; text-align: center; }
+footer svg { width: 64px; margin: 0 auto 6px; }
+footer p { margin: 0 auto; font-family: var(--display); font-style: italic; font-size: 1.5rem; }
+
+@media (max-width: 640px) {
+  .pair { grid-template-columns: 1fr; gap: 20px; }
+  .cross { grid-auto-flow: column; align-items: center; gap: 12px; }
+  .cross span { max-width: none; }
+  .head { grid-template-columns: minmax(0, 1fr) auto; gap: 12px 16px; }
+  .head > div:first-child { display: contents; }
+  .head h2 { grid-column: 1; grid-row: 1; align-self: start; }
+  .head .sub { grid-column: 1 / -1; grid-row: 2; }
+  .head .art { grid-column: 2; grid-row: 1; width: clamp(96px, 30vw, 140px); }
+  #singapore .head .sub, #seattle .head .sub { grid-column: 1; }
+  #singapore .head .art, #seattle .head .art { grid-row: 1 / span 2; }
+  .head .art.wide { width: clamp(120px, 40vw, 170px); }
+}
+@media (max-width: 460px) { .schedule li { grid-template-columns: 4.6rem 32px 1fr; gap: 4px 12px; } .schedule .ico { width: 32px; height: 32px; } .time { font-size: 1.35rem; } }
+
+/* --- guest-utility pass --- */
+html { scroll-padding-top: 4.5rem; }
+.ico { width: 40px; height: 40px; flex: none; overflow: visible; }
+.ico .m, .m { mix-blend-mode: multiply; opacity: .85; }
+.fmag { fill: #d0a3e2; } .fman { fill: #ead79a; } .fcob { fill: #9dbbe3; } .feme { fill: #a3c088; }
+.fblu { fill: #f3b3a6; } .fink { fill: var(--plum); }
+.il { fill: none; stroke: var(--plum); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.hook { display: inline-flex; align-items: baseline; gap: .5rem; margin: 22px auto 0; padding: 6px 18px; border: 1px solid var(--rule); border-radius: 999px; background: rgba(255,255,255,.5); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--plum-soft); }
+.hook b { font-family: var(--display); font-weight: 600; font-size: 1.6rem; line-height: 1; letter-spacing: 0; color: var(--orchid); font-variant-numeric: lining-nums tabular-nums; }
+.hook[hidden] { display: none; }
+.glance { list-style: none; margin: 10px auto 10px; padding: 0; max-width: 19rem; text-align: left; }
+.glance li { display: grid; grid-template-columns: 5.4rem 1fr; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+.glance li:first-child { border-top: 1px solid var(--rule); }
+.glance b { font-family: var(--display); font-weight: 600; font-size: 1.2rem; line-height: 1.3; font-variant-numeric: lining-nums tabular-nums; }
+.glance em { display: block; font-style: normal; font-size: 13px; color: var(--plum-soft); }
+.place p { margin-inline: auto; }
+.cta { margin-top: clamp(24px, 4vw, 40px); }
+.cta .btn { margin-top: 0; }
+.cta p { margin: 12px auto 0; }
+.attire { background: rgba(255,255,255,.5); border: 1px solid var(--rule); box-shadow: 0 0 0 6px rgba(174,178,124,.18); padding: clamp(20px, 4vw, 36px); margin: 0 0 44px; max-width: 58rem; }
+.attire p { margin-bottom: 0; }
+.wear { list-style: none; margin: 0 0 16px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.wear li { text-align: center; padding: 14px 8px 12px; border: 1px solid var(--rule); background: var(--paper); }
+.wear .ico { width: 62px; height: 62px; display: block; margin: 0 auto 6px; }
+.wear strong { display: block; font-family: var(--display); font-weight: 600; font-size: 1.25rem; line-height: 1.15; }
+.wear span { display: block; font-size: 13.5px; line-height: 1.4; color: var(--plum-soft); margin-top: 2px; }
+.cols .ico { margin-bottom: 8px; }
+.acc { max-width: 46rem; border-bottom: 1px solid var(--rule); }
+.acc details { border-top: 1px solid var(--rule); }
+.acc details:first-child { border-top-color: var(--plum); }
+.acc summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; font-family: var(--display); font-weight: 600; font-size: 1.45rem; line-height: 1.2; }
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary::after { content: "+"; flex: none; width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--orchid); border-radius: 50%; color: var(--orchid); font-family: var(--body); font-size: 18px; line-height: 1; }
+.acc details[open] summary::after { content: "\2212"; background: var(--orchid); color: var(--paper); }
+.acc .in { padding: 0 0 18px; color: var(--plum); }
+.acc .in p { margin-top: 0; }
+.acc .in strong { color: var(--plum); }
+.acc .in ul.plain { margin-bottom: 1em; }
+#faq .acc .in ul.plain { list-style: disc; padding-left: 1.15em; }
+#faq .acc .in ul.plain li { border: 0; padding: 4px 0; }
+#faq .acc .in ul.plain li::marker { color: var(--orchid); }
+.acc .in > :last-child { margin-bottom: 0; }
+.grp { margin: 40px 0 12px; }
+.grp:first-of-type { margin-top: 0; }
+.maplink { font-weight: 500; }
+.close { text-align: center; padding-bottom: 20px; }
+.close h2 { font-style: italic; margin-bottom: 10px; }
+.close p { margin-inline: auto; }
+@media (max-width: 640px) {
+  .nav .bar { flex-wrap: wrap; padding-block: 8px; }
+  .nav a.nav-rsvp { order: 1; margin-left: auto; }
+  .nav ul { order: 2; width: 100%; flex-wrap: nowrap; overflow-x: auto; gap: 20px; scrollbar-width: none; justify-content: flex-start; }
+  .nav ul::-webkit-scrollbar { display: none; }
+  .nav ul a { white-space: nowrap; }
+  .nav .mark { order: 0; }
+  html { scroll-padding-top: 6rem; }
+  .wear { grid-template-columns: repeat(2, 1fr); }
+  .acc summary { font-size: 1.5rem; }
+}
+.nav .mark { font-family: var(--display); font-weight: 600; font-size: 1.25rem; letter-spacing: .02em; color: var(--plum); display: none; }
+@media (max-width: 640px) { .nav .mark { display: block; } }
+
+
+/* Multi-page views */
+[data-page][hidden] { display: none !important; }
+main > .wave { display: none; }
+main > .wave.keep { display: block; }
+section[data-page]:not(.explore) { padding-top: clamp(36px, 6vw, 64px); }
+.nav .mark { display: block; text-decoration: none; letter-spacing: .02em; text-transform: none; font-size: 1.25rem; }
+.nav a[aria-current="page"] { color: var(--orchid); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.nav a.nav-rsvp[aria-current="page"] { color: var(--paper); text-decoration: none; }
+.explore { padding-block: clamp(8px, 2vw, 20px) clamp(24px, 4vw, 40px); }
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tiles a { display: grid; grid-template-columns: 40px 1fr; gap: 2px 14px; align-items: start; padding: 18px 18px; border: 1px solid rgba(74, 31, 69, .18); border-radius: 3px; background: rgba(255,255,255,.35); color: var(--plum); text-decoration: none; height: 100%; box-sizing: border-box; }
+.tiles a:hover, .tiles a:focus-visible { border-color: var(--orchid); background: rgba(255,255,255,.6); }
+.tiles .ico { grid-row: span 2; width: 40px; height: 40px; }
+.tiles strong { font-family: var(--display); font-size: 1.25rem; font-weight: 600; line-height: 1.25; }
+.tiles span { font-size: .95rem; line-height: 1.45; }
+@media (max-width: 860px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .tiles { grid-template-columns: 1fr; } }
+.pager { margin-top: clamp(28px, 5vw, 48px); padding-top: 18px; border-top: 1px solid rgba(74, 31, 69, .15); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: .95rem; }
+.pager a { color: var(--plum); }
+
+.cross { margin-top: clamp(80px, 12vw, 150px); }
+@media (max-width: 640px) { .cross { margin-top: 0; } }
+.venue { display: flex; align-items: flex-start; justify-content: center; gap: 10px; margin: 12px auto 6px !important; max-width: 22rem; text-align: left; font-size: 16px; line-height: 1.4; }
+.venue .ico { flex: none; width: 34px; height: 34px; }
+.venue strong { display: block; font-family: var(--display); font-weight: 600; font-size: 1.3rem; line-height: 1.2; }
+.venue a { font-size: 15px; }
+
+.date-line { margin: 18px auto 0; font-family: var(--display); font-size: clamp(1.45rem, 3.6vw, 2.1rem); line-height: 1.25; color: var(--plum); display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 18px; }
+.date-line b { font-family: var(--body); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--orchid); margin-right: 8px; vertical-align: .35em; }
+.date-line .dl-sep { color: var(--orchid); }
+@media (max-width: 640px) { .date-line { flex-direction: column; gap: 8px; } .date-line .dl-sep { display: none; } .date-line b { display: block; margin: 0 0 2px; vertical-align: 0; } }
+.key { max-width: 46rem; margin: 0 0 clamp(28px, 4vw, 40px); padding: 18px 22px 8px; background: rgba(255,255,255,.6); border: 1px solid var(--rule); border-left: 4px solid var(--orchid); border-radius: 3px; }
+.key h3 { margin: 0 0 10px; font-family: var(--body); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--orchid); }
+.key dl { margin: 0; }
+.key dl > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 4px 14px; padding: 9px 0; border-top: 1px solid var(--rule); }
+.key dt { font-weight: 600; }
+.key dd { margin: 0; }
+@media (max-width: 520px) { .key dl > div { grid-template-columns: 1fr; gap: 0; } }
+
+.tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .tiles { grid-template-columns: 1fr; } }
+.placeholder { max-width: 46rem; padding: 22px 24px; border: 1px dashed rgba(122, 58, 134, .45); border-radius: 3px; background: rgba(255,255,255,.4); }
+.placeholder p { margin: 0; }
+.ph-label { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--orchid); margin-bottom: 6px !important; }
+.gallery { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 46rem; }
+.ph-photo { aspect-ratio: 4 / 3; display: grid; place-items: center; border: 1px dashed rgba(122, 58, 134, .45); border-radius: 3px; background: linear-gradient(135deg, rgba(220,193,227,.35), rgba(174,178,124,.3)); color: var(--plum-soft); font-size: 13px; letter-spacing: .15em; text-transform: uppercase; }
+@media (max-width: 520px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.tiles a { align-content: start; }
+.placeholder + .grp { margin-top: 36px; }
+
+.ask { max-width: 46rem; margin-top: clamp(32px, 5vw, 48px); padding: 22px 24px; background: rgba(255,255,255,.6); border: 1px solid var(--rule); border-radius: 3px; }
+.ask h3 { margin: 0 0 6px; font-family: var(--display); font-weight: 600; font-size: 1.5rem; }
+.ask p { margin: 0 0 4px; }
+
+.nav .mark { white-space: nowrap; flex: none; }
+@media (min-width: 641px) { .nav ul { flex-wrap: nowrap; gap: 6px clamp(14px, 1.8vw, 26px); } .nav ul a { letter-spacing: .16em; white-space: nowrap; } }
+@media (min-width: 641px) and (max-width: 960px) { .nav .bar { flex-wrap: wrap; } .nav ul { order: 2; width: 100%; overflow-x: auto; scrollbar-width: none; } .nav a.nav-rsvp { order: 1; margin-left: auto; } }
+
+.sec-h { font-family: var(--display); font-weight: 500; font-size: clamp(1.8rem, 4.5vw, 2.4rem); margin: clamp(40px, 6vw, 64px) 0 18px; }
+.sub-h { font-family: var(--display); font-weight: 600; font-size: 1.45rem; margin: 30px 0 10px; }
+.modes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.mode { padding: 18px 18px 6px; background: rgba(255,255,255,.55); border: 1px solid var(--rule); border-radius: 3px; }
+.mode .ico { width: 40px; height: 40px; }
+.mode h4 { margin: 6px 0 6px; font-family: var(--display); font-weight: 600; font-size: 1.35rem; }
+.mode p { margin: 0 0 12px; }
+@media (max-width: 760px) { .modes { grid-template-columns: 1fr; } }
+.apps { max-width: 46rem; padding-left: 1.2em; margin: 0; }
+.apps li { margin: 6px 0; }
+.steps { list-style: none; padding: 0; margin: 0; max-width: 46rem; }
+.steps li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); }
+.steps li > span { width: 30px; height: 30px; border-radius: 50%; background: var(--orchid); color: var(--paper); display: grid; place-items: center; font-weight: 600; font-size: 14px; }
+.way { margin-top: clamp(40px, 6vw, 64px); }
+.way h3 { font-family: var(--display); font-weight: 500; font-size: clamp(1.8rem, 4.5vw, 2.4rem); margin: 0 0 16px; }
+.way-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 24px; align-items: start; }
+@media (max-width: 860px) { .way-grid { grid-template-columns: 1fr; } }
+.way-fig { margin: 0; }
+.floors .fl { font: 600 12px var(--body); letter-spacing: .2em; fill: #7a3a86; }
+.floors .rm { font: 600 17px var(--display); fill: #3a1f3d; text-anchor: middle; }
+.floors .rn { font: 400 12.5px var(--body); fill: #3a1f3d; text-anchor: middle; }
+.placeholder-inline { margin-top: 14px; padding: 12px 16px; border: 1px dashed rgba(122, 58, 134, .45); border-radius: 3px; color: var(--plum-soft); max-width: 46rem; }
+
+.way h3, h3.sec-h { text-transform: none; letter-spacing: normal; }
+
+.maps { overflow-x: auto; display: grid; grid-template-columns: 1fr; gap: 10px; max-width: 46rem; margin: 0 0 28px; }
+.maps figure { margin: 0; }
+.map { min-width: 560px; }
+.map .ml { font: 15px var(--body); fill: #3a1f3d; }
+.map .ml.small { font-size: 12.5px; fill: #6a5272; }
+.map .ml.hl { font-weight: 700; fill: #7a3a86; }
+
+.app-list li { margin: 10px 0; }
+.stores { display: inline-block; margin-left: 4px; font-size: 15px; white-space: nowrap; }
+.dev { display: block; font-size: 13.5px; color: var(--plum-soft); }
+
+.blocks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; max-width: var(--measure); margin: 2px 0 4px; }
+@media (max-width: 560px) { .blocks { grid-template-columns: 1fr; } }
+.blk { padding: 10px 0 8px; border-top: 1px solid var(--rule); color: var(--plum); }
+.blk h5 { margin: 0; font-family: var(--body); font-weight: 600; font-size: 1rem; line-height: 1.35; }
+.blk .where { margin: 0 0 2px; font-size: 13px; letter-spacing: .02em; color: var(--plum-soft); }
+.blk p { margin: 0 0 4px; font-size: .95rem; }
+.blk-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13.5px; }
+.pill { color: var(--orchid); }
+
+.nav-toggle { display: none; }
+@media (max-width: 960px) {
+  .nav .bar { flex-wrap: nowrap !important; position: relative; }
+  .nav .mark { order: 0; }
+  .nav-toggle { order: 1; margin-left: auto; display: inline-flex; align-items: center; gap: 8px; background: none; border: 1px solid var(--plum); color: var(--plum); padding: 9px 14px; border-radius: 2px; font: 500 12px var(--body); letter-spacing: .2em; text-transform: uppercase; cursor: pointer; }
+  .nav-toggle .bars { width: 14px; height: 10px; border-top: 2px solid currentColor; border-bottom: 2px solid currentColor; position: relative; }
+  .nav-toggle .bars::after { content: ""; position: absolute; left: 0; right: 0; top: 2px; border-top: 2px solid currentColor; }
+  .nav a.nav-rsvp { order: 2; margin-left: 10px !important; }
+  .nav ul { display: none !important; position: absolute; top: 100%; left: 0; right: 0; width: auto !important; order: 3; flex-direction: column; gap: 0 !important; padding: 6px var(--gutter) 14px; background: var(--paper); border-bottom: 1px solid var(--rule); box-shadow: 0 8px 16px rgba(58,31,61,.08); overflow: visible !important; }
+  .nav.open ul { display: flex !important; }
+  .nav ul li { border-top: 1px solid var(--rule); }
+  .nav ul li:first-child { border-top: 0; }
+  .nav ul a { display: block; padding: 14px 0; font-size: 13px; }
+}
+
+
+/* --- visual audit fixes, Nov 15 --- */
+:root { --col: 40rem; }
+p, .sub, ul.plain, .blocks { max-width: var(--col); }
+.lede { max-width: var(--measure); }
+.schedule, .rsvp, .faq, .acc, .key, .apps, .steps, .placeholder, .gallery, .ask, .maps, .placeholder-inline, .attire, .cols.arrive { max-width: var(--col); }
+.cols p, .mode p, .tiles p { max-width: none; }
+
+/* hero */
+.date-line { flex-direction: column; align-items: center; gap: 4px; }
+.date-line .dl-sep { display: none; }
+
+/* home: matched city cards, distance on one line, Singapore details in one panel */
+.pair { grid-template-areas: "sg x sea" "apart apart apart" "day day day"; }
+.place.sg { grid-area: sg; } .place.sea { grid-area: sea; } .cross { grid-area: x; }
+.apart { grid-area: apart; margin: 14px auto 0; max-width: none; font-size: 13px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--plum-soft); }
+.day { grid-area: day; width: 100%; max-width: 44rem; margin: clamp(22px, 3.5vw, 36px) auto 0; padding: 18px 22px 16px; text-align: left; background: rgba(255,255,255,.6); border: 1px solid var(--rule); border-left: 4px solid var(--orchid); border-radius: 3px; }
+.day h3 { color: var(--orchid); margin: 0 0 12px; }
+.day-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px 36px; align-items: start; }
+.day p { margin: 0; max-width: none; }
+.day .venue { justify-content: flex-start; margin: 0 0 12px !important; max-width: none; }
+.venue strong a { font-size: inherit; }
+.day .glance { margin: 0; max-width: none; }
+.day .glance li:first-child { border-top: 0; padding-top: 0; }
+.day .glance li:last-child { border-bottom: 0; padding-bottom: 0; }
+.glance em { font-size: 14px; }
+@media (max-width: 640px) {
+  .pair { grid-template-areas: "sg" "day" "apart" "sea"; }
+  .cross { display: none; }
+  .apart { margin: 10px auto 0; letter-spacing: .12em; }
+  .apart::before { content: "\00d7"; font-family: var(--display); font-size: 1.9rem; line-height: 1; letter-spacing: 0; color: var(--orchid); margin-right: 10px; vertical-align: -.16em; }
+  .day { margin-top: 4px; padding: 16px 18px 14px; }
+  .day-grid { grid-template-columns: 1fr; }
+  .day .glance li:first-child { border-top: 1px solid var(--rule); padding-top: 6px; }
+}
+
+/* Singapore page */
+.time { white-space: nowrap; }
+@media (max-width: 460px) { .schedule li { grid-template-columns: max-content 32px 1fr; } }
+.see-looks + .see-looks { margin-top: 8px; }
+.floors-m { display: none; }
+@media (max-width: 560px) {
+  .floors-d { display: none; } .floors-m { display: block; width: 100%; }
+  .floors-m .fl { font-size: 12.5px; } .floors-m .rm { font-size: 17px; } .floors-m .rn { font-size: 13.5px; }
+}
+@media (max-width: 640px) {
+  #singapore .head { display: block; position: relative; }
+  #singapore .head > div:first-child { display: block; }
+  #singapore .head > div:first-child::before { content: ""; float: right; width: 104px; height: 118px; margin: 0 0 4px 12px; }
+  #singapore .head .art { position: absolute; top: 0; right: 0; width: 98px; pointer-events: none; }
+}
+
+
+@media (max-width: 640px) {
+  #seattle .head { display: block; position: relative; }
+  #seattle .head > div:first-child { display: block; }
+  #seattle .head > div:first-child::before { content: ""; float: right; width: 130px; height: 118px; margin: 0 0 4px 12px; }
+  #seattle .head .art { position: absolute; top: 0; right: 0; width: 124px; pointer-events: none; }
+}
+@media (min-width: 1100px) { #seattle .head { min-height: 230px; } #seattle .head .art.wide { width: 250px; } }
+/* header art: the short, wide drawings get more room on larger screens */
+@media (min-width: 641px) { .head .art.roomy { width: clamp(170px, 28vw, 300px); } }
+
+/* Travel */
+.jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; max-width: var(--col); }
+.jump a { padding: 8px 14px; border: 1px solid var(--rule); border-radius: 999px; background: rgba(255,255,255,.5); color: var(--plum); font-size: 14.5px; text-decoration: none; }
+.jump a:hover, .jump a:focus-visible { border-color: var(--orchid); color: var(--orchid); }
+@media (min-width: 761px) { .modes { grid-template-columns: repeat(2, minmax(0, 1fr)); } .modes .mode:first-child { grid-row: span 2; } }
+
+/* small text and tap targets */
+h3, .key h3, .eyebrow, .hook, .date-line b, .nav a, .nav-toggle { font-size: 13px; }
+.nav .mark { font-size: 1.25rem; }
+.way h3, h3.sec-h { font-size: clamp(1.8rem, 4.5vw, 2.4rem); }
+.tag { font-size: 12px; }
+.blk .where, .dev, .blk-links { font-size: 14px; }
+.stores a, .blk-links a, .pager a, a.maplink, .jump a { display: inline-block; }
+.stores a, .blk-links a, a.maplink { padding-block: 7px; }
+.pager a { padding-block: 9px; }
+.venue a.maplink { padding-block: 6px 0; }
+
+a.maplink:not(:only-child) { display: inline; padding: 0; }
+.venue a.maplink { display: inline-block; padding-block: 6px 0; }
+.cols.arrive { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.cross { margin-top: 0; align-self: center; }
+
+/* FAQ and accordions */
+.ask h3 { text-transform: none; letter-spacing: normal; font-size: 1.5rem; }
+.acc .in > ul.plain:last-child li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+/* HDB photo gallery */
+.hdb-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 16px; margin: 6px 0 4px; }
+.hg { margin: 0; }
+.hg.wide { grid-column: 1 / -1; }
+.hg img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 3px; border: 1px solid var(--rule); background: rgba(220,193,227,.2); }
+.hg.wide img { aspect-ratio: 2 / 1; }
+.hg figcaption { padding-top: 8px; font-size: .95rem; line-height: 1.45; }
+.hg figcaption strong { display: block; font-weight: 600; font-size: 1rem; }
+.hg .where { display: block; font-size: 14px; color: var(--plum-soft); margin-bottom: 2px; }
+.hg .d { display: block; }
+.hg .blk-links { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.hg .credit { font-size: 13px; color: var(--plum-soft); }
+@media (max-width: 560px) { .hdb-gallery { grid-template-columns: 1fr; } .hg.wide img { aspect-ratio: 3 / 2; } }
+
+/* painted header art */
+.art-img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+.spot { margin: 28px auto 30px; max-width: 360px; text-align: center; }
+.spot img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+
+@media (max-width: 640px) {
+  #travel .head .sub, #things-to-do .head .sub, #eat .head .sub, #rsvp .head .sub { grid-column: 1; }
+  #travel .head .art, #things-to-do .head .art, #eat .head .art, #rsvp .head .art { grid-row: 1 / span 2; }
+}
+.spot figcaption { margin-top: 6px; font-size: 14px; color: var(--plum-soft); font-style: italic; }
+.foot-orchid { display: block; width: 64px; height: auto; margin: 0 auto 8px; mix-blend-mode: multiply; }
+
+/* --- style consistency, Nov 15 evening --- */
+/* two box treatments only: plain card, and key-facts card with the orchid left rule */
+.attire, .rsvp { box-shadow: none; background: rgba(255,255,255,.6); border-radius: 3px; }
+.mode { background: rgba(255,255,255,.6); }
+/* header art hangs beside the content from 900px up, so no blank band under the subtitle */
+@media (min-width: 900px) and (max-width: 1099px) {
+  #singapore, #travel, #things-to-do, #eat { --col: min(40rem, calc(60vw - 24px)); }
+  #singapore { --col: min(40rem, calc(66vw - 24px)); }
+  #singapore .head, #travel .head, #things-to-do .head, #eat .head { position: relative; display: block; }
+  #singapore .head > div:first-child { max-width: calc(100% - 24vw); }
+  #travel .head > div:first-child, #things-to-do .head > div:first-child, #eat .head > div:first-child { max-width: calc(100% - 30vw); }
+  #singapore .head .art, #travel .head .art, #things-to-do .head .art, #eat .head .art { position: absolute; top: 0; right: 0; pointer-events: none; }
+}
+/* the pre-retune magenta, wherever it is still drawn, becomes the palette orchid */
+[fill="#a05aa6"] { fill: var(--orchid); }
+.wave [fill="#a05aa6"] { fill-opacity: .26; }
+/* seven home tiles: RSVP, the last, runs the full width */
+.tiles li:last-child { grid-column: 1 / -1; }
+
+/* travel: accordions under a card row; first section heading sits closer to the jump links */
+#travel .acc.more { margin-top: 28px; }
+#travel .sec-h.first { margin-top: 8px; }
+#travel .acc .in .steps { margin-top: 14px; }
+#travel .cols.arrive > div:last-child { grid-column: 1 / -1; }
+</style>
+</head>
+<body>
+
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="wc" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="3" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="12" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation=".8" result="b"/>
+      <feMorphology in="b" operator="erode" radius="2" result="e"/>
+      <feGaussianBlur in="e" stdDeviation="1.5" result="eb"/>
+      <feComposite in="b" in2="eb" operator="out" result="r0"/>
+      <feColorMatrix in="r0" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .7 0" result="ring"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="2" seed="11" result="pool"/>
+      <feColorMatrix in="pool" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.7 0 0 0 .05" result="pa"/>
+      <feComposite in="b" in2="pa" operator="in" result="bp"/>
+      <feMerge result="m"><feMergeNode in="bp"/><feMergeNode in="ring"/></feMerge>
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="5" result="gr"/>
+      <feColorMatrix in="gr" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0 0 0 .52" result="ga"/>
+      <feComposite in="m" in2="ga" operator="in"/>
+    </filter>
+    <filter id="wcbig" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".009" numOctaves="3" seed="8" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="46" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="3" result="b"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".014" numOctaves="2" seed="21" result="pool"/>
+      <feColorMatrix in="pool" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.2 0 0 0 -.25" result="pa"/>
+      <feComposite in="b" in2="pa" operator="in"/>
+    </filter>
+    <filter id="wcfine" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation=".45" result="b"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="2" seed="14" result="pool"/>
+      <feColorMatrix in="pool" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.6 0 0 0 .15" result="pa"/>
+      <feComposite in="b" in2="pa" operator="in"/>
+    </filter>
+    <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="2" seed="6" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="mist" x="-20%" y="-150%" width="140%" height="400%"><feGaussianBlur stdDeviation="9"/></filter>
+  </defs>
+</svg>
+<svg class="defs" aria-hidden="true" focusable="false"><defs><symbol id="i-tea" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><circle cx="23" cy="28" r="14" class="fman"/></g><g class="il"><path d="M12 22h22v6a11 11 0 0 1-22 0zM34 24h3a4 4 0 0 1 0 8h-4M10 43h26M19 16c-2-3 2-5 0-8M27 16c-2-3 2-5 0-8"/></g></symbol><symbol id="i-rings" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><circle cx="19" cy="28" r="11" class="fmag"/></g><g class="il"><circle cx="19" cy="28" r="10"/><circle cx="31" cy="28" r="10"/><path d="M25 6v7M21.500 9.500h7"/></g></symbol><symbol id="i-bowl" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M8 26h32a16 16 0 0 1-32 0z" class="feme"/></g><g class="il"><path d="M8 26h32a16 16 0 0 1-32 0zM18 43h12M22 24L33 6M28 24L40 9"/></g></symbol><symbol id="i-bowl-b" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M8 26h32a16 16 0 0 1-32 0z" class="fcob"/></g><g class="il"><path d="M8 26h32a16 16 0 0 1-32 0zM18 43h12M22 24L33 6M28 24L40 9"/></g></symbol><symbol id="i-heart" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M24 40C10 30 8 22 12 16c4-5 10-3 12 2 2-5 8-7 12-2 4 6 2 14-12 24z" class="fblu"/></g><g class="il"><path d="M24 40C10 30 8 22 12 16c4-5 10-3 12 2 2-5 8-7 12-2 4 6 2 14-12 24z"/></g></symbol><symbol id="i-pin" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><circle cx="24" cy="20" r="13" class="fcob"/></g><g class="il"><path d="M24 44C14 32 10 26 10 20a14 14 0 0 1 28 0c0 6-4 12-14 24z"/><circle cx="24" cy="20" r="5"/></g></symbol><symbol id="i-train" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><rect x="12" y="8" width="24" height="28" rx="6" class="feme"/></g><g class="il"><rect x="12" y="8" width="24" height="28" rx="6"/><path d="M12 22h24M16 43l4-7M32 43l-4-7M18 30h.1M30 30h.1"/></g></symbol><symbol id="i-snow" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><circle cx="24" cy="24" r="14" class="fcob"/></g><g class="il"><path d="M24 7v34M9.500 15.500l29 17M38.500 15.500l-29 17M20 9l4 4 4-4M20 39l4-4 4 4"/></g></symbol><symbol id="i-passport" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><rect x="12" y="6" width="24" height="36" rx="3" class="feme"/></g><g class="il"><rect x="12" y="6" width="24" height="36" rx="3"/><circle cx="24" cy="20" r="7"/><path d="M17 20h14M24 13v14M18 34h12"/></g></symbol><symbol id="i-plane" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><circle cx="24" cy="24" r="14" class="fcob"/></g><g class="il"><path d="M6 27l36-17-9 30-8-11-19-2zM25 29l17-19"/></g></symbol><symbol id="i-sun" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><circle cx="20" cy="20" r="10" class="fman"/></g><g class="il"><circle cx="20" cy="20" r="8"/><path d="M20 4v4M4 20h4M32 20h4M9 9l3 3M31 9l-3 3M9 31l3-3M20 32v4M34 30l-3 6M41 32l-3 6M36 40l-2 4"/></g></symbol><symbol id="i-bed" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><rect x="8" y="22" width="32" height="12" class="feme"/></g><g class="il"><path d="M8 40V12M8 32h32v8M40 32v-5a4 4 0 0 0-4-4H19v9"/><circle cx="13.500" cy="25" r="3"/></g></symbol><symbol id="i-orchid" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><ellipse cx="24" cy="13" rx="6" ry="10" transform="rotate(0 24 22)" class="fmag"/><ellipse cx="24" cy="13" rx="6" ry="10" transform="rotate(72 24 22)" class="fmag"/><ellipse cx="24" cy="13" rx="6" ry="10" transform="rotate(144 24 22)" class="fmag"/><ellipse cx="24" cy="13" rx="6" ry="10" transform="rotate(216 24 22)" class="fmag"/><ellipse cx="24" cy="13" rx="6" ry="10" transform="rotate(288 24 22)" class="fmag"/></g><g class="il"><ellipse cx="24" cy="13" rx="6" ry="10"/><ellipse cx="24" cy="13" rx="6" ry="10" transform="rotate(72 24 22)"/><ellipse cx="24" cy="13" rx="6" ry="10" transform="rotate(144 24 22)"/><ellipse cx="24" cy="13" rx="6" ry="10" transform="rotate(216 24 22)"/><ellipse cx="24" cy="13" rx="6" ry="10" transform="rotate(288 24 22)"/><path d="M24 32v13M24 40q7-1 9-7"/></g></symbol><symbol id="i-fir" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M24 4L40 38H8z" class="feme"/></g><g class="il"><path d="M24 6l-9 12h5l-8 10h6l-8 10h28l-8-10h6l-8-10h5zM24 38v7"/></g></symbol><symbol id="i-mail" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><rect x="8" y="12" width="32" height="24" class="fblu"/></g><g class="il"><rect x="8" y="12" width="32" height="24"/><path d="M8 14l16 12 16-12"/></g></symbol><symbol id="i-ask" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><circle cx="24" cy="24" r="15" class="fmag"/></g><g class="il"><circle cx="24" cy="24" r="16"/><path d="M19 19a5 5 0 1 1 7 5c-2 1-2 2-2 4M24 33v.5"/></g></symbol><symbol id="i-dress" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M18 7h12l-2 11 9 24H11l9-24z" class="fblu"/></g><g class="il"><path d="M19 5l-1 5 3 8-9 24h24l-9-24 3-8-1-5M21 18h6M24 10l-5-1M24 10l5-1"/></g></symbol><symbol id="i-shirt" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M10 12l8-5h12l8 5-4 8-4-2v24H18V18l-4 2z" class="fcob"/></g><g class="il"><path d="M18 7l-9 5 4 8 5-2v24h12V18l5 2 4-8-9-5-6 6zM24 13v29M24 22h.1M24 30h.1"/></g></symbol><symbol id="i-layer" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M10 12l8-5h12l8 5-4 8-4-2v24H18V18l-4 2z" class="fmag"/></g><g class="il"><path d="M18 7l-9 5 4 8 5-2v24h5V20L18 7zM30 7l9 5-4 8-5-2v24h-5V20l5-13zM23 28h.1M23 35h.1"/></g></symbol><symbol id="i-shoe" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><ellipse cx="24" cy="32" rx="17" ry="7" class="feme"/></g><g class="il"><path d="M6 38v-9c5 0 9-3 12-8l7 6c4 3 11 3 17 6v5zM6 34h36M20 24l-3 3M24 27l-3 3"/></g></symbol><symbol id="i-umbrella" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M6 24a18 18 0 0 1 36 0z" class="fcob"/></g><g class="il"><path d="M6 24a18 18 0 0 1 36 0zM24 6V3M24 24v15a4 4 0 0 1-8 0"/></g></symbol><symbol id="i-car" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M8 32v-7l4-9h24l4 9v7z" class="fmag"/></g><g class="il"><path d="M8 33v-8l4-9h24l4 9v8zM8 25h32M12 33v5M36 33v5M14 29h.1M34 29h.1"/></g></symbol><symbol id="i-compass" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><circle cx="24" cy="24" r="15" class="feme"/></g><g class="il"><circle cx="24" cy="24" r="16"/><path d="M31 17l-4 10-10 4 4-10z"/></g></symbol><symbol id="i-gift" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><rect x="9" y="20" width="30" height="20" class="fcob"/></g><g class="il"><rect x="8" y="18" width="32" height="24"/><rect x="6" y="12" width="36" height="7"/><path d="M24 12v30M24 12c-3-6-12-7-11-1 1 3 7 2 11 1M24 12c3-6 12-7 11-1-1 3-7 2-11 1"/></g></symbol><symbol id="i-hanger" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M24 18L6 32v4h36v-4z" class="feme"/></g><g class="il"><path d="M24 14a4 4 0 1 1 4-4M24 14v4L6 32v4h36v-4L24 18"/></g></symbol><symbol id="i-sim" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><path d="M13 6h14l8 8v28H13z" class="fblu"/></g><g class="il"><path d="M13 6h14l8 8v28H13z"/><rect x="18" y="23" width="12" height="13" rx="2"/><path d="M18 29.500h12M24 23v13"/></g></symbol><symbol id="i-phone" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><rect x="14" y="5" width="20" height="38" rx="4" class="fcob"/></g><g class="il"><rect x="14" y="5" width="20" height="38" rx="4"/><path d="M24 30c-4-5-6-8-6-11a6 6 0 0 1 12 0c0 3-2 6-6 11zM21 38h6"/><circle cx="24" cy="19" r="2"/></g></symbol><symbol id="i-info" viewBox="0 0 48 48"><g transform="translate(3 2.5)" class="m" filter="url(#wcfine)"><circle cx="24" cy="24" r="15" class="fcob"/></g><g class="il"><circle cx="24" cy="24" r="16"/><path d="M24 22v11M24 15v.5"/></g></symbol></defs></svg>
+
+<nav class="nav" aria-label="Sections">
+  <div class="bar">
+    <a class="mark" href="#home" aria-label="Home">C &amp; P</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navlist"><span class="bars" aria-hidden="true"></span>Menu</button>
+    <ul id="navlist">
+      <li><a href="#singapore">Singapore</a></li>
+      <li><a href="#travel">Travel</a></li>
+      <li><a href="#eat">Eat</a></li>
+      <li><a href="#things-to-do">Do</a></li>
+      <li><a href="#seattle">Seattle</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="nav-rsvp" data-rsvp href="#rsvp">RSVP</a>
+  </div>
+</nav>
+
+<header class="hero wrap" data-page="home">
+  <p class="eyebrow">Two cities, two celebrations, 2027</p>
+  <h1 class="names">Charlotte&nbsp;<em>&amp;</em> Preston</h1>
+  <p class="date-line"><span><b>Singapore</b> Saturday, 27 February 2027</span><span class="dl-sep" aria-hidden="true">&middot;</span><span><b>Seattle</b> Summer 2027</span></p>
+  <p class="cities">The Garden City <span>&times;</span> The Emerald City</p>
+  <p class="lede">We are getting married, and we are celebrating in the two places we call home: one with orchids and chicken rice, one with evergreens and ferries.</p>
+  <p class="hook" id="hook" hidden></p>
+
+  <div class="pair">
+    <figure class="place sg">
+      <img class="place-img" src="img/home-singapore.jpg" alt="Watercolour of Singapore: Vanda Miss Joaquim orchids, a rain tree, the glass conservatories and Supertrees at Gardens by the Bay" width="1200" height="800">
+      <figcaption>
+        <h2 class="city">Singapore</h2>
+        <p class="when">Saturday, 27 February 2027</p>
+        <p class="small">Hilton Singapore Orchard</p>
+        <p class="small clock">Now in Singapore: <span id="clock-sin">&nbsp;</span></p>
+      </figcaption>
+    </figure>
+    <div class="cross" aria-hidden="true"><b>&times;</b></div>
+    <figure class="place sea">
+      <img class="place-img" src="img/home-seattle.jpg" alt="Watercolour of Seattle: Mount Rainier, Douglas firs, a Washington State ferry on Puget Sound and the Space Needle" width="1200" height="800">
+      <figcaption>
+        <h2 class="city">Seattle</h2>
+        <p class="when">Summer 2027</p>
+        <p class="small">Date and venue to be announced.</p>
+        <p class="small clock">Now in Seattle: <span id="clock-sea">&nbsp;</span></p>
+      </figcaption>
+    </figure>
+    <p class="apart">About 13,000 km (8,000 miles) apart</p>
+    <div class="day">
+      <h3>The day in Singapore</h3>
+      <div class="day-grid">
+        <div>
+          <p class="venue"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span><strong><a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/" rel="noopener">Hilton Singapore Orchard</a></strong>333 Orchard Road, Singapore 238867<br><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Singapore+Orchard%2C+333+Orchard+Road" rel="noopener">Open in Google Maps</a></span></p>
+          <p class="small day-wear">Attire: smart lunch dress, light fabrics. <a href="#attire">See what to wear</a></p>
+        </div>
+        <ul class="glance">
+          <li><b>10:00 am</b><span>Please arrive; tea ceremony <em>Level 5</em></span></li>
+          <li><b>11:00 am</b><span>Vow exchange</span></li>
+          <li><b>12:30 pm</b><span>Lunch <em>Until 3:00 pm</em></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <a class="btn" data-rsvp href="#rsvp">RSVP</a>
+    <p class="small"><strong>Singapore: please reply by 15 December 2026.</strong></p>
+  </div>
+</header>
+
+<main>
+<section class="explore" data-page="home" aria-label="Explore the site"><div class="wrap"><ul class="tiles"><li><a href="#singapore"><svg class="ico" aria-hidden="true"><use href="#i-orchid"/></svg><strong>Singapore</strong><span>Schedule, venue, what to wear</span></a></li><li><a href="#travel"><svg class="ico" aria-hidden="true"><use href="#i-plane"/></svg><strong>Travel</strong><span>Getting to Singapore, where to stay, getting around</span></a></li><li><a href="#eat"><svg class="ico" aria-hidden="true"><use href="#i-bowl-b"/></svg><strong>Eat</strong><span>Hawker centres and what to order</span></a></li><li><a href="#things-to-do"><svg class="ico" aria-hidden="true"><use href="#i-compass"/></svg><strong>Do</strong><span>Neighbourhoods, walks, board games and more</span></a></li><li><a href="#seattle"><svg class="ico" aria-hidden="true"><use href="#i-fir"/></svg><strong>Seattle</strong><span>Summer 2027, details to come</span></a></li><li><a href="#faq"><svg class="ico" aria-hidden="true"><use href="#i-ask"/></svg><strong>FAQ</strong><span>Arrival times, children, travel and more</span></a></li><li><a href="#rsvp"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><strong>RSVP</strong><span>Singapore: please reply by 15 December 2026</span></a></li></ul></div></section>
+
+<svg class="wave" viewBox="0 0 1400 96" preserveAspectRatio="none" aria-hidden="true"><g filter="url(#wc)" style="mix-blend-mode:multiply"><path d="M-20,21.8C-8.3,22.7 26.7,25.1 50,27.2C73.3,29.3 96.7,32.6 120,34.5C143.3,36.4 166.7,38.8 190,38.6C213.3,38.4 236.7,36 260,33.2C283.3,30.4 306.7,25.7 330,22C353.3,18.4 376.7,12.7 400,11.1C423.3,9.6 446.7,12.5 470,12.6C493.3,12.7 516.7,11.5 540,11.5C563.3,11.6 586.7,13.7 610,13C633.3,12.4 656.7,4.1 680,7.6C703.3,11.1 726.7,31.4 750,33.9C773.3,36.4 796.7,24.6 820,22.8C843.3,21 866.7,20.6 890,23C913.3,25.3 936.7,34.7 960,36.8C983.3,38.8 1006.7,35.7 1030,35.1C1053.3,34.5 1076.7,35.7 1100,33.3C1123.3,30.9 1146.7,24.5 1170,20.8C1193.3,17 1216.7,13 1240,10.9C1263.3,8.9 1286.7,4.1 1310,8.4C1333.3,12.8 1368.3,32.3 1380,37L1440,30.9C1428.3,31.9 1393.3,34.3 1370,36.5C1346.7,38.7 1323.3,41.9 1300,44C1276.7,46.1 1253.3,47.3 1230,49C1206.7,50.7 1183.3,53.6 1160,54.3C1136.7,55 1113.3,53.1 1090,53.3C1066.7,53.5 1043.3,55.8 1020,55.6C996.7,55.5 973.3,53.9 950,52.3C926.7,50.7 903.3,47.6 880,46C856.7,44.4 833.3,43.7 810,42.6C786.7,41.5 763.3,40.5 740,39.3C716.7,38 693.3,36.3 670,34.9C646.7,33.4 623.3,31.1 600,30.4C576.7,29.7 553.3,30.9 530,30.7C506.7,30.6 483.3,28.8 460,29.5C436.7,30.1 413.3,32.4 390,34.6C366.7,36.9 343.3,41.1 320,43C296.7,44.8 273.3,44.9 250,45.8C226.7,46.8 203.3,47.4 180,48.7C156.7,50 133.3,52.6 110,53.7C86.7,54.7 51.7,54.9 40,55.1Z" fill="#7ba0c2" fill-opacity="0.42" /><path d="M-20,56.1C-8.3,55.5 26.7,54.8 50,52.5C73.3,50.2 96.7,45.3 120,42.3C143.3,39.3 166.7,37.1 190,34.5C213.3,32 236.7,28.4 260,27C283.3,25.6 306.7,26.3 330,26.2C353.3,26.1 376.7,26.1 400,26.3C423.3,26.6 446.7,23.1 470,27.9C493.3,32.7 516.7,50.6 540,55.2C563.3,59.7 586.7,55.6 610,55.3C633.3,55 656.7,55.5 680,53.7C703.3,51.8 726.7,45 750,44.1C773.3,43.2 796.7,49.3 820,48.5C843.3,47.8 866.7,39.2 890,39.7C913.3,40.2 936.7,53.5 960,51.5C983.3,49.6 1006.7,31.2 1030,28.1C1053.3,24.9 1076.7,32.2 1100,32.6C1123.3,33 1146.7,30.5 1170,30.3C1193.3,30.2 1216.7,27.2 1240,31.7C1263.3,36.1 1286.7,55.6 1310,56.9C1333.3,58.3 1368.3,42.6 1380,39.8L1440,49.4C1428.3,48.5 1393.3,45.2 1370,43.8C1346.7,42.4 1323.3,41.3 1300,41C1276.7,40.6 1253.3,41.2 1230,41.8C1206.7,42.4 1183.3,43.4 1160,44.6C1136.7,45.7 1113.3,47.4 1090,48.9C1066.7,50.4 1043.3,52.3 1020,53.6C996.7,54.9 973.3,55.3 950,56.9C926.7,58.5 903.3,61.6 880,63.1C856.7,64.6 833.3,64.9 810,65.9C786.7,66.9 763.3,68.6 740,69C716.7,69.5 693.3,69.6 670,68.8C646.7,68 623.3,66 600,64.3C576.7,62.6 553.3,60.7 530,58.8C506.7,56.9 483.3,55.4 460,53C436.7,50.6 413.3,45.8 390,44.4C366.7,43 343.3,44.8 320,44.5C296.7,44.2 273.3,43.1 250,42.5C226.7,41.8 203.3,40.2 180,40.4C156.7,40.7 133.3,42.4 110,43.9C86.7,45.3 51.7,48.4 40,49.3Z" fill="#dcc1e3" fill-opacity="0.36" /><path d="M-20,49.2C-8.3,48.7 26.7,47.5 50,45.9C73.3,44.3 96.7,40 120,39.5C143.3,39 166.7,41.9 190,42.8C213.3,43.7 236.7,42.5 260,44.9C283.3,47.4 306.7,55 330,57.5C353.3,60 376.7,59.3 400,60C423.3,60.6 446.7,60.6 470,61.2C493.3,61.9 516.7,62.7 540,63.8C563.3,64.9 586.7,69.8 610,67.8C633.3,65.9 656.7,55.8 680,52.3C703.3,48.9 726.7,47.9 750,47.4C773.3,47 796.7,50.1 820,49.8C843.3,49.5 866.7,46.9 890,45.8C913.3,44.7 936.7,41.2 960,43.3C983.3,45.3 1006.7,56.5 1030,57.9C1053.3,59.4 1076.7,50.8 1100,52C1123.3,53.2 1146.7,63.5 1170,65.3C1193.3,67 1216.7,62.3 1240,62.5C1263.3,62.6 1286.7,65.6 1310,66C1333.3,66.5 1368.3,65.1 1380,64.9L1440,70.6C1428.3,70.5 1393.3,69.9 1370,70C1346.7,70 1323.3,71.2 1300,70.6C1276.7,69.9 1253.3,67.9 1230,65.9C1206.7,63.9 1183.3,59.7 1160,58.4C1136.7,57.2 1113.3,59.4 1090,58.5C1066.7,57.7 1043.3,53.7 1020,53.5C996.7,53.3 973.3,56.5 950,57.3C926.7,58 903.3,57.6 880,57.9C856.7,58.2 833.3,58.5 810,59.2C786.7,59.9 763.3,61.3 740,62.3C716.7,63.2 693.3,63 670,64.9C646.7,66.8 623.3,72.6 600,73.5C576.7,74.4 553.3,70.2 530,70.5C506.7,70.8 483.3,74.7 460,75.4C436.7,76.1 413.3,75.7 390,74.7C366.7,73.7 343.3,71.2 320,69.3C296.7,67.3 273.3,63.9 250,62.9C226.7,61.8 203.3,63.4 180,62.9C156.7,62.4 133.3,61.1 110,60C86.7,58.9 51.7,56.8 40,56.2Z" fill="#aeb27c" fill-opacity="0.34" /></g><g filter="url(#ink)" fill="none" stroke="#7ba0c2" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"><path d="M120,38.5C130,38.8 160,39.9 180,40C200,40.1 220,39.6 240,38.9C260,38.1 280,36.9 300,35.5C320,34.1 340,32.3 360,30.7C380,29.1 400,27.2 420,25.7C440,24.3 470,22.5 480,21.9"/><path d="M700,57C710,56.8 740,56.5 760,55.6C780,54.8 800,53.5 820,52.1C840,50.7 860,48.8 880,47.2C900,45.6 920,43.7 940,42.3C960,40.8 980,39.5 1000,38.6C1020,37.7 1040,37.1 1060,37C1080,36.9 1100,37.3 1120,38C1140,38.7 1160,40 1180,41.3C1200,42.7 1230,45.3 1240,46.1"/></g></svg>
+<section id="singapore" data-page="singapore">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Singapore</h2>
+        <p class="sub">Saturday, 27 February 2027. Everything happens in one place, at <a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/" rel="noopener">Hilton Singapore Orchard</a>, from the tea ceremony through lunch.</p>
+      </div>
+      <div class="art"><img class="art-img" src="img/art-singapore-orchids.jpg" alt="" loading="lazy"></div>
+    </div>
+
+    <aside class="key" aria-label="Need to know"><h3>Need to know</h3><dl><div><dt>When</dt><dd>Saturday, 27 February 2027. <strong>Please arrive by 10:00 am</strong> for the tea ceremony.</dd></div><div><dt>Where</dt><dd><a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/" rel="noopener">Hilton Singapore Orchard</a>, 333 Orchard Road, Singapore 238867. <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Singapore+Orchard%2C+333+Orchard+Road" rel="noopener">Map</a></dd></div><div><dt>Wear</dt><dd>Smart lunch attire in light fabrics, plus a light layer for the air-conditioning. <a href="#attire">More</a></dd></div><div><dt>RSVP</dt><dd>By 15 December 2026. <a href="#rsvp">RSVP</a></dd></div></dl></aside>
+
+    <ol class="schedule">
+      <li>
+        <div class="time">10:00 am</div>
+        <svg class="ico " aria-hidden="true"><use href="#i-tea"/></svg>
+        <div>
+          <strong>Tea ceremony</strong>
+          <span class="small"><a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/events/" rel="noopener">Mahogany Room</a>, Level 5. We serve tea to our elders and receive their blessings. Everyone is welcome; please arrive by 10:00.</span>
+        </div>
+      </li>
+      <li>
+        <div class="time">11:00 am</div>
+        <svg class="ico " aria-hidden="true"><use href="#i-rings"/></svg>
+        <div>
+          <strong>Vow exchange</strong>
+          <span class="small">Mahogany Room. A short exchange of vows.</span>
+        </div>
+      </li>
+      <li>
+        <div class="time">12:30 pm</div>
+        <svg class="ico " aria-hidden="true"><use href="#i-bowl"/></svg>
+        <div>
+          <strong>Lunch</strong>
+          <span class="small"><a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/dining/estate/" rel="noopener">Estate</a> restaurant, Level 5. Buffet lunch with open seating, until 3:00 pm.</span>
+        </div>
+      </li>
+      <li>
+        <div class="time">3:00 pm</div>
+        <svg class="ico " aria-hidden="true"><use href="#i-heart"/></svg>
+        <div>
+          <strong>Send-off</strong>
+        </div>
+      </li>
+    </ol>
+
+    <div class="attire" id="attire">
+      <h3>What to wear</h3>
+      <ul class="wear">
+        <li><svg class="ico " aria-hidden="true"><use href="#i-dress"/></svg><strong>A dress</strong><span>Knee or midi length is perfect</span></li>
+        <li><svg class="ico " aria-hidden="true"><use href="#i-shirt"/></svg><strong>Shirt and trousers</strong><span>Jacket optional, tie not needed</span></li>
+        <li><svg class="ico " aria-hidden="true"><use href="#i-layer"/></svg><strong>A light layer</strong><span>The hotel is kept cool</span></li>
+        <li><svg class="ico " aria-hidden="true"><use href="#i-shoe"/></svg><strong>Comfortable shoes</strong><span>Flats are fine</span></li>
+      </ul>
+      <p>Think special lunch at a nice hotel. Light, breathable fabrics for the trip over. No need for anything formal or floor-length.</p>
+      <p class="see-looks">Hot, humid-weather looks, in photos: <a href="https://www.lovebonito.com/intl/women/wedding-guest-dresses" rel="noopener">dresses</a> (Love, Bonito, a Singapore label) &middot; <a href="https://suitsupply.com/en-us/men/shirts/linen" rel="noopener">linen shirts</a> (Suitsupply), worn with light trousers</p>
+      <p class="see-looks">What to look for in fabrics: <a href="https://www.davidsbridal.com/content/style-guides/the-best-summer-wedding-guest-dresses-for-hot-humid-weather" rel="noopener">dresses</a> &middot; <a href="https://orlebarbrown.com/blogs/ob-club/what-to-wear-to-a-destination-wedding-when-youre-a-guest" rel="noopener">menswear</a></p>
+    </div>
+
+    <div class="cols arrive">
+      <div>
+        <svg class="ico " aria-hidden="true"><use href="#i-pin"/></svg>
+        <h3>Where</h3>
+        <p><a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/" rel="noopener">Hilton Singapore Orchard</a><br>333 Orchard Road<br>Singapore 238867</p>
+        <p><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Singapore+Orchard%2C+333+Orchard+Road" rel="noopener">Open in Google Maps</a></p>
+      </div>
+      <div>
+        <svg class="ico " aria-hidden="true"><use href="#i-train"/></svg>
+        <h3>By train or taxi</h3>
+        <p>Somerset MRT (North South Line) is about a 5 to 7 minute walk. Orchard MRT (North South and Thomson-East Coast Lines) is about 10 minutes. Taxis and private hire cars drop off at the hotel.</p>
+      </div>
+      <div>
+        <svg class="ico " aria-hidden="true"><use href="#i-car"/></svg>
+        <h3>Driving</h3>
+        <p>The hotel has its own car park, free for self-parking, and valet parking (S$20). <a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/hotel-location/" rel="noopener">Location and parking</a></p>
+      </div>
+      <div>
+        <svg class="ico " aria-hidden="true"><use href="#i-info"/></svg>
+        <h3>Good to know</h3>
+        <p>Everything is indoors and air-conditioned. Children are very welcome. Seating at lunch is open.</p>
+      </div>
+    </div>
+
+    <div class="way" id="finding-your-way">
+      <h3>Finding your way</h3>
+      <div class="way-grid">
+        <ol class="steps">
+          <li><span>1</span><div><strong>Arrive at the hotel&rsquo;s Level 1 lobby</strong>, from Orchard Road or through <a href="https://www.mandaringallery.com.sg/" rel="noopener">Mandarin Gallery</a> next door.</div></li>
+          <li><span>2</span><div><strong>Take the lift to Level 5.</strong> The hotel has two wings with separate lifts, so follow the signs for Level 5 or ask the staff at the lobby.</div></li>
+          <li><span>3</span><div><strong>On Level 5, head for the function rooms</strong> (the Smart Oasis). They open off the lift lobby, and the <a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/events/" rel="noopener">Mahogany Room</a> is the first room you reach.</div></li>
+          <li><span>4</span><div><strong>For lunch,</strong> walk back out to the Level 5 reception. <a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/dining/estate/" rel="noopener">Estate</a> is right beside it, next to the Ginger.Lily lounge. We will all walk over together at 12:30.</div></li>
+        </ol>
+        <figure class="way-fig"><svg class="floors floors-d" viewBox="0 0 640 360" role="img" aria-label="Diagram: from the Level 1 lobby take the lift to Level 5. The lift lobby opens onto the Smart Oasis function area, where Mahogany I is nearest the lifts. Estate is beside Ginger.Lily and the Level 5 reception.">
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7a3a86"/></marker></defs>
+  <rect x="20" y="16" width="600" height="250" rx="6" fill="rgba(255,255,255,.55)" stroke="#3a1f3d" stroke-opacity=".35"/>
+  <text x="36" y="38" class="fl" style="text-anchor:start">LEVEL 5</text>
+  <rect x="40" y="56" width="250" height="150" rx="5" fill="#a05aa6" fill-opacity=".10" stroke="#7a3a86" stroke-dasharray="5 4"/>
+  <text x="165" y="74" class="rm" style="font-size:15px">Mahogany Room</text><text x="165" y="196" class="rn">in the Smart Oasis function area</text>
+  <rect x="56" y="90" width="68" height="56" rx="3" fill="#a05aa6" fill-opacity=".30" stroke="#7a3a86"/><text x="90" y="122" class="rm" style="font-size:14px">I</text>
+  <rect x="128" y="90" width="68" height="56" rx="3" fill="#a05aa6" fill-opacity=".22" stroke="#7a3a86"/><text x="162" y="122" class="rm" style="font-size:14px">II</text>
+  <rect x="200" y="90" width="68" height="56" rx="3" fill="#a05aa6" fill-opacity=".22" stroke="#7a3a86"/><text x="234" y="122" class="rm" style="font-size:14px">III</text>
+  <text x="162" y="170" class="rn">10:00 tea ceremony &middot; 11:00 vows</text>
+  <rect x="300" y="110" width="80" height="96" rx="4" fill="#7ba0c2" fill-opacity=".25" stroke="#7ba0c2"/>
+  <text x="340" y="150" class="rm" style="font-size:14px">Lift</text><text x="340" y="168" class="rm" style="font-size:14px">lobby</text>
+  <path d="M300 150 H272" stroke="#7a3a86" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <rect x="400" y="56" width="200" height="60" rx="4" fill="#dcc1e3" fill-opacity=".3" stroke="#7a3a86" stroke-opacity=".6"/>
+  <text x="500" y="82" class="rm">Reception &amp; Ginger.Lily</text><text x="500" y="100" class="rn">lounge</text>
+  <rect x="400" y="146" width="200" height="60" rx="4" fill="#aeb27c" fill-opacity=".35" stroke="#6c7855"/>
+  <text x="500" y="172" class="rm">Estate restaurant</text><text x="500" y="190" class="rn">12:30 lunch</text>
+  <path d="M290 96 C340 70 360 80 396 84" stroke="#7a3a86" stroke-width="2.5" fill="none" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <path d="M500 116 V142" stroke="#7a3a86" stroke-width="2.5" fill="none" stroke-dasharray="6 5" marker-end="url(#arr)"/>
+  <text x="36" y="250" class="rn" style="text-anchor:start">Dashed line: the walk to lunch, together at 12:30</text>
+  <rect x="20" y="282" width="600" height="56" rx="6" fill="rgba(255,255,255,.55)" stroke="#3a1f3d" stroke-opacity=".35"/>
+  <text x="36" y="304" class="fl" style="text-anchor:start">LEVEL 1</text>
+  <text x="400" y="316" class="rm" style="font-size:15px">Hotel lobby, from Orchard Road or Mandarin Gallery</text>
+  <path d="M340 282 V210" stroke="#7a3a86" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <text x="350" y="232" class="rn" style="text-anchor:start">lift up</text>
+  <text x="620" y="354" class="rn" style="text-anchor:end">Diagram, not to scale</text>
+</svg><svg class="floors floors-m" viewBox="0 0 340 480" role="img" aria-label="Diagram: from the Level 1 lobby take the lift to Level 5. The lift lobby opens onto the Smart Oasis function area, where Mahogany I is nearest the lifts. Estate is beside Ginger.Lily and the Level 5 reception.">
+  <defs><marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7a3a86"/></marker></defs>
+  <rect x="8" y="8" width="324" height="336" rx="6" fill="rgba(255,255,255,.55)" stroke="#3a1f3d" stroke-opacity=".35"/>
+  <text x="22" y="31" class="fl" style="text-anchor:start">LEVEL 5</text>
+  <rect x="20" y="44" width="300" height="124" rx="5" fill="#a05aa6" fill-opacity=".10" stroke="#7a3a86" stroke-dasharray="5 4"/>
+  <text x="170" y="66" class="rm">Mahogany Room</text>
+  <rect x="34" y="76" width="86" height="40" rx="3" fill="#a05aa6" fill-opacity=".30" stroke="#7a3a86"/><text x="77" y="101" class="rm" style="font-size:15px">I</text>
+  <rect x="127" y="76" width="86" height="40" rx="3" fill="#a05aa6" fill-opacity=".22" stroke="#7a3a86"/><text x="170" y="101" class="rm" style="font-size:15px">II</text>
+  <rect x="220" y="76" width="86" height="40" rx="3" fill="#a05aa6" fill-opacity=".22" stroke="#7a3a86"/><text x="263" y="101" class="rm" style="font-size:15px">III</text>
+  <text x="170" y="137" class="rn">10:00 tea ceremony &middot; 11:00 vows</text>
+  <text x="170" y="156" class="rn">in the Smart Oasis function area</text>
+  <rect x="20" y="204" width="112" height="70" rx="4" fill="#7ba0c2" fill-opacity=".25" stroke="#7ba0c2"/>
+  <text x="76" y="244" class="rm">Lift lobby</text>
+  <path d="M76 204 V174" stroke="#7a3a86" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/>
+  <rect x="152" y="196" width="168" height="54" rx="4" fill="#dcc1e3" fill-opacity=".3" stroke="#7a3a86" stroke-opacity=".6"/>
+  <text x="236" y="219" class="rm">Reception</text><text x="236" y="238" class="rn">and Ginger.Lily lounge</text>
+  <rect x="152" y="276" width="168" height="54" rx="4" fill="#aeb27c" fill-opacity=".35" stroke="#6c7855"/>
+  <text x="236" y="299" class="rm">Estate restaurant</text><text x="236" y="318" class="rn">12:30 lunch</text>
+  <path d="M262 168 V192" stroke="#7a3a86" stroke-width="2.5" fill="none" stroke-dasharray="6 5" marker-end="url(#arr2)"/>
+  <path d="M236 250 V272" stroke="#7a3a86" stroke-width="2.5" fill="none" stroke-dasharray="6 5" marker-end="url(#arr2)"/>
+  <rect x="8" y="376" width="324" height="58" rx="6" fill="rgba(255,255,255,.55)" stroke="#3a1f3d" stroke-opacity=".35"/>
+  <text x="22" y="397" class="fl" style="text-anchor:start">LEVEL 1</text>
+  <text x="214" y="399" class="rm">Hotel lobby</text>
+  <text x="170" y="421" class="rn">from Orchard Road or Mandarin Gallery</text>
+  <path d="M76 376 V280" stroke="#7a3a86" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/>
+  <text x="86" y="366" class="rn" style="text-anchor:start">lift up</text>
+  <text x="8" y="454" class="rn" style="text-anchor:start">Dashed line: the walk to lunch at 12:30</text>
+  <text x="8" y="472" class="rn" style="text-anchor:start">Diagram, not to scale</text>
+</svg></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1400 96" preserveAspectRatio="none" aria-hidden="true"><g filter="url(#wc)" style="mix-blend-mode:multiply"><path d="M-20,21.8C-8.3,22.3 26.7,22.4 50,24.9C73.3,27.4 96.7,35.2 120,37C143.3,38.8 166.7,36.2 190,35.7C213.3,35.2 236.7,35.9 260,33.9C283.3,31.9 306.7,26.3 330,23.7C353.3,21.2 376.7,20.5 400,18.5C423.3,16.4 446.7,12.8 470,11.3C493.3,9.8 516.7,10.2 540,9.4C563.3,8.7 586.7,7.6 610,6.8C633.3,6 656.7,2.1 680,4.6C703.3,7 726.7,17.2 750,21.5C773.3,25.9 796.7,28.2 820,30.8C843.3,33.4 866.7,36.6 890,37.1C913.3,37.5 936.7,33.8 960,33.2C983.3,32.6 1006.7,34.7 1030,33.4C1053.3,32 1076.7,29.7 1100,25.2C1123.3,20.8 1146.7,8.5 1170,6.7C1193.3,4.9 1216.7,12.8 1240,14.4C1263.3,16 1286.7,14.4 1310,16.4C1333.3,18.4 1368.3,24.7 1380,26.4L1440,32.3C1428.3,33.7 1393.3,38.2 1370,40.4C1346.7,42.6 1323.3,44.6 1300,45.5C1276.7,46.3 1253.3,44.4 1230,45.7C1206.7,47 1183.3,51.6 1160,53.2C1136.7,54.8 1113.3,55 1090,55.1C1066.7,55.1 1043.3,54 1020,53.4C996.7,52.8 973.3,52.5 950,51.5C926.7,50.4 903.3,48.3 880,47.1C856.7,46 833.3,46.3 810,44.6C786.7,42.9 763.3,38.6 740,37C716.7,35.3 693.3,36 670,34.8C646.7,33.5 623.3,29.9 600,29.5C576.7,29.1 553.3,31.6 530,32.5C506.7,33.4 483.3,34.1 460,34.6C436.7,35.2 413.3,34.8 390,35.9C366.7,37.1 343.3,39.4 320,41.6C296.7,43.7 273.3,47.1 250,48.9C226.7,50.6 203.3,51.3 180,52C156.7,52.8 133.3,53.3 110,53.3C86.7,53.3 51.7,52.4 40,52.2Z" fill="#dcc1e3" fill-opacity="0.42" /><path d="M-20,58C-8.3,57.5 26.7,57.1 50,55.3C73.3,53.6 96.7,50.3 120,47.4C143.3,44.5 166.7,41.8 190,38C213.3,34.3 236.7,27.1 260,24.7C283.3,22.4 306.7,23.7 330,23.9C353.3,24.1 376.7,25 400,25.8C423.3,26.6 446.7,23.9 470,28.5C493.3,33.2 516.7,51 540,53.5C563.3,56.1 586.7,43.1 610,44C633.3,44.9 656.7,56.5 680,58.9C703.3,61.3 726.7,58.4 750,58.2C773.3,58 796.7,59.9 820,57.9C843.3,55.9 866.7,52.4 890,46.2C913.3,40 936.7,24.1 960,20.7C983.3,17.2 1006.7,25.2 1030,25.7C1053.3,26.1 1076.7,19.4 1100,23.1C1123.3,26.8 1146.7,43.8 1170,47.8C1193.3,51.8 1216.7,48.8 1240,47.2C1263.3,45.7 1286.7,37.2 1310,38.3C1333.3,39.5 1368.3,51.6 1380,54.2L1440,52.2C1428.3,50.5 1393.3,43.3 1370,41.9C1346.7,40.4 1323.3,43.8 1300,43.3C1276.7,42.8 1253.3,38.9 1230,38.7C1206.7,38.6 1183.3,40.5 1160,42.4C1136.7,44.3 1113.3,48.5 1090,50.1C1066.7,51.6 1043.3,50.5 1020,51.8C996.7,53.1 973.3,55.5 950,57.8C926.7,60.2 903.3,64.3 880,65.9C856.7,67.4 833.3,67.2 810,67.2C786.7,67.1 763.3,65.4 740,65.8C716.7,66.2 693.3,70.5 670,69.6C646.7,68.7 623.3,63 600,60.4C576.7,57.9 553.3,55.9 530,54.2C506.7,52.5 483.3,51.4 460,50.1C436.7,48.9 413.3,47.6 390,46.6C366.7,45.6 343.3,45.2 320,43.9C296.7,42.7 273.3,39.4 250,39.1C226.7,38.8 203.3,41.2 180,42C156.7,42.8 133.3,42.3 110,44C86.7,45.6 51.7,50.5 40,51.9Z" fill="#a05aa6" fill-opacity="0.36" /><path d="M-20,52.2C-8.3,51.1 26.7,47.3 50,45.9C73.3,44.4 96.7,43.9 120,43.2C143.3,42.6 166.7,40.9 190,41.8C213.3,42.7 236.7,47.2 260,48.7C283.3,50.3 306.7,48.7 330,51C353.3,53.3 376.7,60.3 400,62.6C423.3,65 446.7,65.2 470,65.2C493.3,65.3 516.7,65.4 540,63C563.3,60.7 586.7,52.9 610,51C633.3,49.1 656.7,50.2 680,51.5C703.3,52.9 726.7,59.8 750,59.1C773.3,58.3 796.7,49.3 820,47C843.3,44.6 866.7,45.4 890,44.7C913.3,44.1 936.7,41.5 960,43.2C983.3,44.9 1006.7,50.7 1030,55C1053.3,59.3 1076.7,68.8 1100,68.9C1123.3,69 1146.7,56.7 1170,55.7C1193.3,54.7 1216.7,62 1240,62.9C1263.3,63.9 1286.7,64.1 1310,61.5C1333.3,59 1368.3,49.8 1380,47.4L1440,72.7C1428.3,72.5 1393.3,72.6 1370,71.3C1346.7,70 1323.3,66.5 1300,64.8C1276.7,63 1253.3,61.8 1230,60.8C1206.7,59.9 1183.3,60.2 1160,59C1136.7,57.9 1113.3,54.6 1090,54C1066.7,53.5 1043.3,56.1 1020,56C996.7,55.8 973.3,53.4 950,53.1C926.7,52.8 903.3,53.3 880,54.1C856.7,54.8 833.3,56.4 810,57.8C786.7,59.1 763.3,60.8 740,62.2C716.7,63.5 693.3,64.6 670,66.2C646.7,67.7 623.3,70.2 600,71.4C576.7,72.5 553.3,72.9 530,73C506.7,73.2 483.3,72.4 460,72.3C436.7,72.3 413.3,73.6 390,72.8C366.7,71.9 343.3,68 320,67.1C296.7,66.2 273.3,67.9 250,67.3C226.7,66.7 203.3,64.9 180,63.5C156.7,62 133.3,60 110,58.5C86.7,57.1 51.7,55.2 40,54.5Z" fill="#7ba0c2" fill-opacity="0.34" /></g><g filter="url(#ink)" fill="none" stroke="#7ba0c2" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"><path d="M120,38.5C130,38.8 160,39.9 180,40C200,40.1 220,39.6 240,38.9C260,38.1 280,36.9 300,35.5C320,34.1 340,32.3 360,30.7C380,29.1 400,27.2 420,25.7C440,24.3 470,22.5 480,21.9"/><path d="M700,57C710,56.8 740,56.5 760,55.6C780,54.8 800,53.5 820,52.1C840,50.7 860,48.8 880,47.2C900,45.6 920,43.7 940,42.3C960,40.8 980,39.5 1000,38.6C1020,37.7 1040,37.1 1060,37C1080,36.9 1100,37.3 1120,38C1140,38.7 1160,40 1180,41.3C1200,42.7 1230,45.3 1240,46.1"/></g></svg>
+<section id="seattle" data-page="seattle">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Seattle</h2>
+        <p class="sub">Summer 2027. We are still settling the date and the venue for our Seattle celebration, and we will post both here and write to you as soon as they are set.</p>
+      </div>
+      <div class="art wide"><img class="art-img" src="img/art-seattle-fir.jpg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1400 96" preserveAspectRatio="none" aria-hidden="true"><g filter="url(#wc)" style="mix-blend-mode:multiply"><path d="M-20,19.9C-8.3,21.4 26.7,26.5 50,28.6C73.3,30.7 96.7,30.8 120,32.5C143.3,34.2 166.7,38.5 190,38.7C213.3,38.9 236.7,36.8 260,33.7C283.3,30.6 306.7,23.6 330,20.1C353.3,16.7 376.7,15.2 400,13C423.3,10.8 446.7,7.6 470,7C493.3,6.3 516.7,8.7 540,9.3C563.3,9.9 586.7,9.2 610,10.5C633.3,11.7 656.7,13.3 680,16.8C703.3,20.3 726.7,30.4 750,31.4C773.3,32.5 796.7,22.7 820,23.2C843.3,23.6 866.7,32.4 890,34.1C913.3,35.9 936.7,35.1 960,33.6C983.3,32.1 1006.7,26 1030,25.2C1053.3,24.5 1076.7,30.1 1100,29C1123.3,28 1146.7,22.3 1170,19.1C1193.3,15.8 1216.7,10.5 1240,9.6C1263.3,8.7 1286.7,9.6 1310,13.6C1333.3,17.6 1368.3,30.3 1380,33.6L1440,34C1428.3,34.4 1393.3,34.9 1370,36.3C1346.7,37.8 1323.3,40.9 1300,42.7C1276.7,44.5 1253.3,45.7 1230,47C1206.7,48.4 1183.3,49.6 1160,50.8C1136.7,52 1113.3,53.7 1090,54.3C1066.7,54.8 1043.3,54.2 1020,54.1C996.7,54.1 973.3,54.7 950,53.7C926.7,52.7 903.3,49.8 880,48.3C856.7,46.8 833.3,46.2 810,44.6C786.7,43.1 763.3,40.6 740,39.1C716.7,37.6 693.3,37 670,35.7C646.7,34.5 623.3,32.7 600,31.4C576.7,30.2 553.3,27.7 530,28.2C506.7,28.7 483.3,32.6 460,34.4C436.7,36.2 413.3,37.4 390,38.9C366.7,40.5 343.3,42.3 320,43.6C296.7,44.9 273.3,45.4 250,46.8C226.7,48.2 203.3,51.2 180,52C156.7,52.8 133.3,51 110,51.7C86.7,52.3 51.7,55.2 40,55.9Z" fill="#aeb27c" fill-opacity="0.42" /><path d="M-20,55.5C-8.3,55.4 26.7,58 50,55.2C73.3,52.3 96.7,42.6 120,38.6C143.3,34.5 166.7,32.7 190,30.8C213.3,29 236.7,28.3 260,27.4C283.3,26.6 306.7,26.3 330,25.7C353.3,25.1 376.7,23.5 400,23.8C423.3,24.1 446.7,24.5 470,27.5C493.3,30.5 516.7,36.9 540,41.9C563.3,46.8 586.7,55.5 610,57C633.3,58.6 656.7,51.4 680,51.2C703.3,51.1 726.7,55.5 750,56.2C773.3,56.8 796.7,57.3 820,55.2C843.3,53 866.7,45.7 890,43.3C913.3,41 936.7,44 960,41.1C983.3,38.2 1006.7,25.5 1030,26C1053.3,26.4 1076.7,43.8 1100,43.6C1123.3,43.4 1146.7,25.3 1170,24.8C1193.3,24.3 1216.7,35.7 1240,40.4C1263.3,45.1 1286.7,49.8 1310,53C1333.3,56.2 1368.3,58.5 1380,59.6L1440,49.5C1428.3,48.6 1393.3,45.3 1370,44.3C1346.7,43.2 1323.3,43.9 1300,43.2C1276.7,42.5 1253.3,40.1 1230,40C1206.7,39.9 1183.3,40.8 1160,42.6C1136.7,44.5 1113.3,49.2 1090,51.1C1066.7,53 1043.3,52.5 1020,54C996.7,55.5 973.3,58.7 950,60C926.7,61.3 903.3,60.6 880,61.8C856.7,63 833.3,66.1 810,67.3C786.7,68.5 763.3,69.6 740,69C716.7,68.4 693.3,64.7 670,63.8C646.7,62.8 623.3,64.2 600,63.2C576.7,62.2 553.3,60.2 530,57.8C506.7,55.3 483.3,50.3 460,48.4C436.7,46.6 413.3,47.7 390,46.7C366.7,45.6 343.3,43 320,42.3C296.7,41.6 273.3,42.5 250,42.5C226.7,42.5 203.3,41.1 180,42.1C156.7,43 133.3,46.1 110,48C86.7,49.9 51.7,52.7 40,53.6Z" fill="#7ba0c2" fill-opacity="0.36" /><path d="M-20,47.7C-8.3,47.6 26.7,48.3 50,47.3C73.3,46.4 96.7,42.7 120,41.9C143.3,41.1 166.7,42 190,42.7C213.3,43.5 236.7,44.5 260,46.5C283.3,48.5 306.7,52.6 330,54.7C353.3,56.9 376.7,57.8 400,59.1C423.3,60.5 446.7,61.9 470,63.1C493.3,64.3 516.7,66.4 540,66.2C563.3,66 586.7,65.3 610,62C633.3,58.7 656.7,47.6 680,46.4C703.3,45.1 726.7,55.5 750,54.3C773.3,53.2 796.7,41.8 820,39.6C843.3,37.4 866.7,38.8 890,41.3C913.3,43.8 936.7,51.4 960,54.6C983.3,57.8 1006.7,60.7 1030,60.6C1053.3,60.6 1076.7,53.6 1100,54.1C1123.3,54.5 1146.7,62.4 1170,63.2C1193.3,64.1 1216.7,59.7 1240,59.4C1263.3,59 1286.7,63 1310,61C1333.3,59 1368.3,49.7 1380,47.4L1440,71.3C1428.3,71.1 1393.3,70.1 1370,69.8C1346.7,69.5 1323.3,70.5 1300,69.6C1276.7,68.7 1253.3,65.8 1230,64.5C1206.7,63.1 1183.3,62.9 1160,61.4C1136.7,59.9 1113.3,57 1090,55.4C1066.7,53.9 1043.3,52.7 1020,52.4C996.7,52.1 973.3,52.4 950,53.4C926.7,54.4 903.3,57.4 880,58.2C856.7,59 833.3,57.6 810,58.3C786.7,59.1 763.3,61.3 740,62.8C716.7,64.3 693.3,66.1 670,67.4C646.7,68.7 623.3,69.9 600,70.8C576.7,71.6 553.3,71.8 530,72.7C506.7,73.6 483.3,76.5 460,76C436.7,75.5 413.3,71.5 390,69.8C366.7,68.2 343.3,66.2 320,65.9C296.7,65.5 273.3,68 250,67.5C226.7,67 203.3,64.2 180,63C156.7,61.7 133.3,61.5 110,60.1C86.7,58.7 51.7,55.5 40,54.6Z" fill="#dcc1e3" fill-opacity="0.34" /></g><g filter="url(#ink)" fill="none" stroke="#7ba0c2" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"><path d="M120,38.5C130,38.8 160,39.9 180,40C200,40.1 220,39.6 240,38.9C260,38.1 280,36.9 300,35.5C320,34.1 340,32.3 360,30.7C380,29.1 400,27.2 420,25.7C440,24.3 470,22.5 480,21.9"/><path d="M700,57C710,56.8 740,56.5 760,55.6C780,54.8 800,53.5 820,52.1C840,50.7 860,48.8 880,47.2C900,45.6 920,43.7 940,42.3C960,40.8 980,39.5 1000,38.6C1020,37.7 1040,37.1 1060,37C1080,36.9 1100,37.3 1120,38C1140,38.7 1160,40 1180,41.3C1200,42.7 1230,45.3 1240,46.1"/></g></svg>
+<section id="travel" data-page="travel">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Travel</h2>
+        <p class="sub">Getting to Singapore, settling in and getting around.</p>
+      </div>
+      <div class="art roomy"><img class="art-img" src="img/art-travel-shophouses.jpg" alt="Watercolour of a row of Peranakan shophouses in lilac and sage, with potted plants under the arcade" loading="lazy"></div>
+    </div>
+
+    <nav class="jump" aria-label="On this page"><a href="#plan">Plan your trip</a><a href="#before-you-fly">Before you fly</a><a href="#arriving">When you land</a><a href="#getting-around">Getting around</a></nav>
+
+    <h3 class="sec-h first" id="plan">Plan your trip</h3>
+    <div class="cols">
+      <div>
+        <svg class="ico" aria-hidden="true"><use href="#i-plane"/></svg>
+        <h3>When to arrive</h3>
+        <p>Fly into <a href="https://www.changiairport.com/">Singapore Changi Airport</a>, the only airport you need. Singapore is 16 hours ahead of Seattle and 13 ahead of Bogot&aacute;, so arrive at least three days early if you can: by Wednesday 24 February.</p>
+      </div>
+      <div>
+        <svg class="ico" aria-hidden="true"><use href="#i-bed"/></svg>
+        <h3>Where to stay</h3>
+        <p>Staying at <a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/" rel="noopener">Hilton Singapore Orchard</a> puts you an elevator ride from the day. Anywhere along Orchard Road or near a North South Line station is an easy trip.</p>
+        <p><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Singapore+Orchard%2C+333+Orchard+Road" rel="noopener">Hotel on Google Maps</a></p>
+      </div>
+      <div>
+        <svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg>
+        <h3>Weather in late February</h3>
+        <p>Warm and humid, around 25 to 31&deg;C (77 to 88&deg;F), with the odd short shower. Indoors is cool, so a light layer is useful.</p>
+      </div>
+    </div>
+
+    <h3 class="sec-h" id="before-you-fly">Before you fly</h3>
+    <aside class="key" aria-label="To enter Singapore"><h3>To enter Singapore</h3><dl><div><dt>Passport</dt><dd>Valid for at least six months.</dd></div><div><dt>Visa</dt><dd>Not needed for a short visit on a US or Colombian passport. Other nationalities: check the <a href="https://www.ica.gov.sg/enter-depart/entry_requirements">official ICA entry requirements</a>.</dd></div><div><dt>Arrival card</dt><dd>Submit the free <a href="https://www.ica.gov.sg/enter-transit-depart/entering-singapore/sg-arrival-card">SG Arrival Card</a> within three days before you land, on the official ICA site or the MyICA app. Sites that charge a fee are not ICA.</dd></div><div><dt>From Colombia</dt><dd>Been in Colombia in the six days before you land, including a layover of more than 12 hours? Bring a <a href="https://www.ica.gov.sg/enter-transit-depart/entering-singapore/yellow-fever-vaccination-certificate">yellow fever vaccination certificate</a>.</dd></div></dl></aside>
+    <div class="cols">
+      <div>
+        <svg class="ico" aria-hidden="true"><use href="#i-sim"/></svg>
+        <h3>Sort out mobile data</h3>
+        <p>You will need data for maps and for booking rides once you land. Set up a tourist eSIM at home, plan to buy a SIM at the airport, or use your home carrier&rsquo;s roaming. <a href="#sim">SIM and eSIM options</a></p>
+      </div>
+      <div>
+        <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
+        <h3>Set up a ride app</h3>
+        <p>Download one or two ride-hailing apps and add a card while your phone can still receive verification texts, and tell your bank you will be in Singapore. <a href="#apps">Which apps, and how to set them up</a></p>
+      </div>
+      <div>
+        <svg class="ico" aria-hidden="true"><use href="#i-umbrella"/></svg>
+        <h3>What to pack</h3>
+        <p>Light clothes, something that covers shoulders and knees for temples and mosques, a compact umbrella, one light layer, an insulated bottle (fill it with ice in the morning), and a UK-style three-pin plug adapter. The <a href="#faq">FAQ</a> covers whether you also need a voltage converter.</p>
+      </div>
+    </div>
+    <div class="acc more">
+<details id="sim"><summary>Local SIM and eSIM options</summary><div class="in">
+      <p>A Singapore number and data plan is cheap and makes the ride apps and maps easy. Your phone must be unlocked.</p>
+      <ul class="apps">
+        <li><strong>eSIM before you fly:</strong> <a href="https://www.starhub.com/personal/mobile/tourist-sim.html" rel="noopener">StarHub&rsquo;s tourist eSIM</a> can be bought online at home, on the phone that will use it, with a passport check in the app. Activate it after you land, within 18 days of buying. <a href="https://www.m1.com.sg/mobile/prepaid-plans/tourist-sim" rel="noopener">M1</a> and <a href="https://www.singtel.com/personal/products-services/mobile/prepaid-plans/hi-tourist" rel="noopener">Singtel</a> also sell tourist eSIMs online; some Singtel plans start counting days from purchase, so don&rsquo;t buy too early.</li>
+        <li><strong>Physical SIM at Changi:</strong> counters in the arrival hall of every terminal (Changi Recommends, StarHub and others), most open 24 hours. Bring your passport; it is needed to register the SIM. <a href="https://www.changiairport.com/en/at-changi/facilities-and-services-directory/changi-airport-sim-card-purchase-buy-sim-card-singapore.html" rel="noopener">Changi&rsquo;s SIM card guide</a></li>
+        <li><strong>Plans</strong> run about S$10 to S$30 for 7 to 30 days with plenty of data. Check the operators&rsquo; pages for current prices.</li>
+        <li>Or use your home carrier&rsquo;s roaming. Free Wi-Fi at Changi helps you set everything up when you land.</li>
+      </ul>
+</div></details>
+<details id="apps"><summary>Ride-hailing apps and how to set them up</summary><div class="in">
+      <ul class="apps app-list">
+        <li><strong>Gojek</strong>. Private hire cars, and it can also book taxis. <span class="stores"><a href="https://apps.apple.com/us/app/gojek/id944875099" rel="noopener">App Store</a> &middot; <a href="https://play.google.com/store/apps/details?id=com.gojek.app" rel="noopener">Google Play</a></span><span class="dev">By PT GoTo Gojek Tokopedia</span></li>
+        <li><strong>TADA</strong>. Private hire cars. <span class="stores"><a href="https://apps.apple.com/us/app/id1412329684" rel="noopener">App Store</a> &middot; <a href="https://play.google.com/store/apps/details?id=io.mvlchain.tada" rel="noopener">Google Play</a></span><span class="dev">By MVL / TADA Mobility</span></li>
+        <li><strong>Grab</strong>. The biggest app here. Some things are easiest or only available on Grab, such as booking an airport ride days ahead or a car with child seats. <span class="stores"><a href="https://apps.apple.com/us/app/grab-superapp/id647268330" rel="noopener">App Store</a> &middot; <a href="https://play.google.com/store/apps/details?id=com.grabtaxi.passenger" rel="noopener">Google Play</a></span><span class="dev">By Grab.com</span></li>
+        <li>For the MRT and buses, <strong>Google Maps</strong> works well, or LTA&rsquo;s <strong>MyTransport.SG</strong> app. <span class="stores"><a href="https://apps.apple.com/us/app/mytransport-sg/id1306661188" rel="noopener">App Store</a> &middot; <a href="https://play.google.com/store/apps/details?id=sg.gov.lta.mytransportsg" rel="noopener">Google Play</a></span><span class="dev">By the Land Transport Authority</span></li>
+      </ul>
+      <p class="small">Use these store links, and check the developer name, to be sure you are downloading the real app.</p>
+      <ol class="steps">
+        <li><span>1</span><div><strong>Download</strong> one or two of the apps at home, on Wi-Fi.</div></li>
+        <li><span>2</span><div><strong>Create an account</strong> with your mobile number, including the country code (+1 or +57). The app sends a verification code by text or WhatsApp, so do this while your phone can receive them.</div></li>
+        <li><span>3</span><div><strong>Add a credit card</strong> in the app&rsquo;s payment settings. Your bank may ask you to approve it, or place a small temporary hold. Expect a small fee on foreign cards.</div></li>
+        <li><span>4</span><div><strong>Tell your bank</strong> you will be in Singapore, so the first ride is not declined.</div></li>
+      </ol>
+</div></details>
+    </div>
+
+    <h3 class="sec-h" id="arriving">When you land</h3>
+    <div class="cols arrive">
+      <div>
+        <svg class="ico" aria-hidden="true"><use href="#i-passport"/></svg>
+        <h3>1. Clear immigration</h3>
+        <p>With your SG Arrival Card submitted, immigration is usually quick.</p>
+      </div>
+      <div>
+        <svg class="ico" aria-hidden="true"><use href="#i-sim"/></svg>
+        <h3>2. Get connected</h3>
+        <p>Activate your eSIM, or pick up a tourist SIM at a counter in the arrival hall. Bring your passport to the counter.</p>
+      </div>
+      <div>
+        <svg class="ico" aria-hidden="true"><use href="#i-car"/></svg>
+        <h3>3. Get to the hotel</h3>
+        <p><strong>Taxi:</strong> taxi stands at every terminal, roughly 25 to 30 minutes and about S$25 to S$45 to Orchard Road (there is an airport surcharge). Or book a private hire car in an app; Changi has marked <a href="https://www.changiairport.com/cn/en/at-changi/transport-and-directions/leaving-the-airport.html">pick-up points</a>.<br><strong>MRT:</strong> about an hour. Change at Tanah Merah, then at City Hall for the North South Line to Somerset.</p>
+      </div>
+    </div>
+    <div class="acc more">
+<details id="cpap"><summary>Distilled water for CPAP machines</summary><div class="in">
+      <p>If you use a CPAP, you can pick up distilled water as soon as you land, before leaving the airport.</p>
+      <ol class="steps">
+        <li><span>1</span><div><strong>After customs, find a Cheers convenience store</strong> in the public arrival area. They are open 24 hours: <a href="https://cheers.com.sg/store/cheers-changi-t3-arrival-hall/" rel="noopener">Terminal 3 Arrival Hall, #01-24</a> and <a href="https://cheers.com.sg/store/cheers-changi-airport-t4-arrival-hall/" rel="noopener">Terminal 4 Arrival Hall, #01-09</a>. Arriving at Terminal 1 or 2? Go up one floor to the Cheers in the Level 2 departure hall. <a href="https://www.changiairport.com/en/airport-guide/facilities-and-services/convenience-stores.html" rel="noopener">All Changi convenience stores</a></div></li>
+        <li><span>2</span><div><strong>Look for bottles labelled &ldquo;distilled&rdquo;</strong>, not &ldquo;drinking&rdquo; or &ldquo;mineral&rdquo; water.</div></li>
+        <li><span>3</span><div><strong>Back-up:</strong> <a href="https://www.jewelchangiairport.com/en/shop/fairprice-finest.html" rel="noopener">FairPrice Finest at Jewel</a> (Basement 2, 9 am to 11 pm), reached from Terminal 1 or by link bridge from Terminals 2 and 3, is the best back-up: FairPrice sells distilled water (look for the Life brand). Bringing one night&rsquo;s worth from home is a good safety net.</div></li>
+      </ol>
+</div></details>
+    </div>
+
+    <div class="around" id="getting-around">
+      <h3 class="sec-h">Getting around Singapore</h3>
+      <div class="modes">
+        <div class="mode">
+          <svg class="ico" aria-hidden="true"><use href="#i-train"/></svg>
+          <h4>MRT and buses</h4>
+          <p>Fast, cheap and air-conditioned. Tap a contactless Visa, Mastercard or Amex, or your phone, at the gate and on the bus. <strong>Each person needs their own card or phone.</strong> Tap in and out with the same one. <a href="https://simplygo.com.sg/faqs/cards-and-charms/simplygo/contactless-bank-cards/">Foreign cards</a> pay a small fee of S$0.60 per day of travel.</p>
+          <p>To avoid foreign card fees, get a local <strong>EZ-Link card</strong> instead. It costs S$10, including S$5 of credit, at 7-Eleven or the ticket office in Changi Airport MRT station. Top it up with cash at station machines or 7-Eleven.</p>
+        </div>
+        <div class="mode">
+          <svg class="ico" aria-hidden="true"><use href="#i-car"/></svg>
+          <h4>Taxis</h4>
+          <p>Taxis are <strong>metered</strong> and can be <strong>flagged down on the street</strong>, or found at taxi stands. They cannot stop at bus stops or in bus lanes, and in the city centre use a taxi stand or a building&rsquo;s driveway. Expect <a href="https://www.lta.gov.sg/content/ltagov/en/getting_around/point_to_point_transport_and_cross_border_services/taxi_fares_payment_methods.html">surcharges</a> at peak times, late at night and from the airport. Most take cards.</p>
+        </div>
+        <div class="mode">
+          <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
+          <h4>Private hire cars</h4>
+          <p>This is what Singapore calls Uber-style rides (Uber itself left in 2018). They <strong>must be booked in an app</strong>, cannot be flagged down, and show the fare before you ride. <a href="#apps">Which apps to use</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="things-to-do" data-page="things-to-do">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Do</h2>
+        <p class="sub">Singapore is small, safe and easy to get around. If you are flying this far, stay a while. Here is what we would do with the time.</p>
+      </div>
+      <div class="art"><img class="art-img" src="img/art-things-dragon.jpg" alt="Watercolour of the peach-tiled Dragon Playground in Toa Payoh, under a rain tree with HDB blocks behind" loading="lazy"></div>
+    </div>
+    <div class="acc"><details open><summary>If you only have a few days</summary><div class="in"><ul class="plain"><li>Eat at a hawker centre, more than once. <a href="#eat">Where to go and what to order</a></li><li>Take the MRT. Preston loves the trains here, and they will get you to almost everything on this page. <a href="#getting-around">How to ride</a></li><li>See the <a href="https://www.mandai.com/en/night-safari.html" rel="noopener">Night Safari</a> at Mandai. <a href="https://buy.mandai.com/web-storefront/en/products/night-safari-admission" rel="noopener">Book a time slot</a> ahead. It opens at 6 pm and is about an hour from Orchard.</li><li>Go to <a href="https://www.gardensbythebay.com.sg/en/plan-your-visit/opening-hours.html" rel="noopener">Gardens by the Bay</a>: we recommend both the <a href="https://www.gardensbythebay.com.sg/en/things-to-do/attractions/cloud-forest.html" rel="noopener">Cloud Forest</a> and the <a href="https://www.gardensbythebay.com.sg/en/things-to-do/attractions/flower-dome.html" rel="noopener">Flower Dome</a>, then stay for the free <a href="https://www.gardensbythebay.com.sg/en/whats-on/calendar-of-events/garden-rhapsody.html" rel="noopener">Supertree light show</a> at 7:45 or 8:45 pm. Each dome closes one day a month: <a href="#happening">check the dates</a>.</li><li>Spend a morning each in <a href="https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/chinatown/" rel="noopener">Chinatown</a>, <a href="https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/little-india/" rel="noopener">Little India</a> and <a href="https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/kampong-gelam/" rel="noopener">Kampong Gelam</a>. <a href="#neighbourhoods">What to see in each</a></li><li>Start one morning with a walk. The <a href="https://sbg.nparks.gov.sg/" rel="noopener">Botanic Gardens</a> at dawn is the easy one; for a real hike, see <a href="#walks">Walks and hikes</a>.</li><li>Walk around <a href="https://www.roots.gov.sg/places/places-landing/trails/toa-payoh-heritage-trail----of-public-housing-and-shared-spaces" rel="noopener">Toa Payoh</a>, where Charlotte grew up and a classic HDB (public housing) town, to see how most Singaporeans live.</li></ul></div></details>
+<details><summary>Close to the hotel</summary><div class="in"><ul class="plain"><li><strong><a href="https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/orchard-road/heritage-walk-itinerary/emerald-hill/" rel="noopener">Emerald Hill</a>.</strong> A lane of restored Peranakan terrace houses five minutes&rsquo; walk away, best in the evening.</li><li><strong><a href="https://www.nparks.gov.sg/visit/parks/park-detail/fort-canning-park" rel="noopener">Fort Canning Park</a>.</strong> A small historic hill and the best first-morning walk. About 20 minutes on foot, or one MRT stop from Somerset to Dhoby Ghaut.</li><li><strong><a href="https://sbg.nparks.gov.sg/" rel="noopener">Singapore Botanic Gardens</a>.</strong> Two MRT stops from Orchard station (Napier). Free, open from 5 am, and perfect for a jet-lagged early start. Look out for the wild chickens, actually red junglefowl, wandering the lawns.</li></ul></div></details>
+<details id="neighbourhoods"><summary>Neighbourhoods</summary><div class="in"><p>Chinatown, Little India and Kampong Gelam are the historic quarters of Singapore&rsquo;s three main communities. Each is a good half day, and all are 15 to 20 minutes from Orchard by MRT.</p><ul class="plain"><li><strong><a href="https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/chinatown/" rel="noopener">Chinatown</a></strong> (morning; Chinatown or Maxwell MRT). The Buddha Tooth Relic Temple, the Hindu Sri Mariamman Temple and the Hokkien Thian Hock Keng temple sit within a few streets of each other. Cover shoulders and knees for all three, and leave your shoes at the door at Sri Mariamman. Lunch at Maxwell Food Centre.</li><li><strong><a href="https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/little-india/" rel="noopener">Little India</a></strong> (morning or after dark; Little India MRT). Tekka Centre for food and the wet market, the Sri Veeramakaliamman Temple (shoulders and knees covered, shoes off at the door), flower garland stalls, and Mustafa Centre, a department store that sells everything and never seems to close.</li><li><strong><a href="https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/kampong-gelam/" rel="noopener">Kampong Gelam</a></strong> (late afternoon into evening; Bugis MRT). The golden-domed Sultan Mosque (shoulders and knees covered, shoes off at the door), the textile shops of Arab Street, and the murals and boutiques of Haji Lane. During Ramadan a night bazaar sets up here.</li><li><strong><a href="https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/marina-bay/" rel="noopener">Marina Bay</a></strong> (5 pm onwards; Bayfront MRT). Not historic, but the skyline everyone comes for. Walk the waterfront loop at sunset, then cross to Gardens by the Bay for the Supertree light show.</li></ul></div></details>
+<details id="walks"><summary>Walks and hikes</summary><div class="in"><p>The heat doubles the effort. Start by 8 am and finish by 11, or go after 4:30 pm. Bring an insulated bottle filled with ice, a hat and a small umbrella.</p><ul class="plain"><li><strong><a href="https://www.nparks.gov.sg/visit/parks/sungei-buloh-wetland-reserve" rel="noopener">Sungei Buloh Wetland Reserve</a>.</strong> Charlotte&rsquo;s pick. Flat mangrove boardwalks with monitor lizards, mudskippers and the occasional crocodile. Open 7 am to 7 pm. From Kranji MRT, take bus 925 (925M on Sundays and public holidays). Allow about an hour each way from Orchard.</li><li><strong><a href="https://www.nparks.gov.sg/visit/parks/central-catchment-nature-reserve/activities/hiking-nature-walk#treetop-walk" rel="noopener">MacRitchie TreeTop Walk</a>.</strong> Preston&rsquo;s pick. A rainforest trail out to a 250-metre suspension bridge in the canopy; from the Venus Drive entrance the full loop is about 7 km, 3 to 4 hours. Go in the morning: the bridge is one-way, closed on Mondays, and opens at 9 am Tuesday to Friday and 8:30 am at weekends, with last entry at 4:45 pm. The monkeys here are bold: keep food and plastic bags out of sight.</li><li><strong><a href="https://nparks.gov.sg/docs/default-source/parks-docs/shared/hortpark-southern-ridges-diy-walk.pdf" rel="noopener">Southern Ridges</a>.</strong> Hilltop parks joined by bridges, including Henderson Waves, with harbour views. About 10 km end to end; start from HarbourFront MRT and walk as much of it as you like.</li></ul></div></details>
+<details><summary>Public housing estates worth seeing</summary><div class="in"><p>About 77% of households live in HDB flats: public housing built by the Housing &amp; Development Board. Seeing an HDB town, with its void decks, playgrounds, markets and hawker centre, is seeing everyday Singapore.</p><ul class="plain"><li><strong><a href="https://www.roots.gov.sg/places/places-landing/trails/toa-payoh-heritage-trail----of-public-housing-and-shared-spaces" rel="noopener">Toa Payoh</a></strong> (Toa Payoh MRT, about 10 minutes from Orchard, no change). Where Charlotte grew up. The first town designed and built entirely by HDB, and still a busy, typical one. Follow the <a href="https://www.roots.gov.sg/places/places-landing/trails/toa-payoh-heritage-trail----of-public-housing-and-shared-spaces" rel="noopener">heritage trail</a> (about 1.5 hours on foot) past the 1979 <a href="https://en.wikipedia.org/wiki/Toa_Payoh_Dragon_Playground" rel="noopener">Dragon Playground</a> at Block 28 Lorong 6 and <a href="https://en.wikipedia.org/wiki/53_Lorong_5_Toa_Payoh" rel="noopener">Block 53</a>, the &ldquo;VIP block&rdquo; Queen Elizabeth visited in 1972, then eat at <a href="https://www.google.com/maps/search/?api=1&amp;query=Toa+Payoh+Lorong+8+Market+and+Food+Centre" rel="noopener">Lorong 8 Market &amp; Food Centre</a>.</li><li><strong><a href="https://www.roots.gov.sg/places/places-landing/trails/tiong-bahru-heritage-trail" rel="noopener">Tiong Bahru estate</a>.</strong> Built before the HDB existed, by its predecessor. Curved Art Deco flats from the 1930s to 50s, spiral staircases, and a neighbourhood market and caf&eacute;s. <a href="https://stackedhomes.com/editorial/exploring-tiong-bahru-in-60-pictures-a-detailed-walkthrough-of-what-makes-this-old-estate-so-charming" rel="noopener">See it in 60 pictures</a> or follow the <a href="https://www.roots.gov.sg/places/places-landing/trails/tiong-bahru-heritage-trail" rel="noopener">Tiong Bahru Heritage Trail</a>. Pair it with breakfast at Tiong Bahru Market.</li><li><strong><a href="https://www.roots.gov.sg/places/places-landing/trails/my-queenstown-heritage-trail" rel="noopener">Queenstown</a>.</strong> Singapore&rsquo;s first satellite estate, begun in 1952. HDB&rsquo;s very first blocks, from 1960, still stand on Stirling Road; the <a href="https://www.roots.gov.sg/places/places-landing/trails/my-queenstown-heritage-trail" rel="noopener">My Queenstown Heritage Trail</a> maps out what to see.</li></ul></div></details>
+<details><summary>For the board gamers</summary><div class="in"><p>We play a lot when we are in Singapore. Where we go:</p><ul class="plain"><li><strong><a href="https://geekster.sg/" rel="noopener">Geekster</a></strong> (Geylang, near Aljunied MRT). Our favourite place to play. It is community-focused, welcoming and friendly, and plays the strategy games we like. On Thursday strategy nights you can roll two dice to set your entry fee. It is where we found Wandering Towers. Closed Mondays and Wednesdays, and evenings only on other weekdays.</li><li><strong><a href="https://www.kingandthepawn.com/" rel="noopener">King and the Pawn</a></strong> (Purvis Street, near City Hall and Bugis MRT). Modern, keeps up with the board game industry, and caters to strategy games, with decent food to eat while you play. The space is small and fills up quickly, so book. Evenings only Tuesday to Friday, from 11 am at weekends. They made <a href="https://www.kingandthepawn.com/shop" rel="noopener">F&uacute;: Festive Fortunes</a> and sell it.</li><li><strong><a href="https://themindcafe.sg/" rel="noopener">The Mind Cafe</a></strong> (30 Prinsep Street). We have played here a lot: a big open space, easy to find seats, and a good library to borrow from. The crowd skews casual, so it can get loud with groups playing party games.</li><li><strong><a href="https://www.google.com/maps/search/?api=1&amp;query=GuildHall+15+Phillip+Street+Singapore" rel="noopener">GuildHall</a></strong> (15 Phillip Street, near Raffles Place MRT). Good for playing; they do not sell games.</li></ul><p><strong>To buy games:</strong> The Mind Cafe (the same Prinsep Street store), <a href="https://teamboardgame.com/" rel="noopener">Team Board Game</a> (near MacPherson MRT; the shop closes at 8 pm, 6 pm on Sundays) and <a href="https://geekster.sg/" rel="noopener">Geekster</a>.</p></div></details>
+<details id="museums"><summary>Museums, and what to do when it rains</summary><div class="in"><p>Start with the National Museum for the story of Singapore, then pick by interest. Museums are also the best answer to the midday heat or a rainstorm.</p><ul class="plain"><li><strong><a href="https://www.nationalmuseum.nhb.gov.sg/" rel="noopener">National Museum of Singapore</a>.</strong> The best single primer. Its main Singapore History Gallery reopened in October 2026 after a three-year rebuild.</li><li><strong><a href="https://www.peranakanmuseum.nhb.gov.sg/" rel="noopener">Peranakan Museum</a>.</strong> The culture of the Straits Chinese: beadwork, porcelain, wedding traditions. Small and beautiful.</li><li><strong><a href="https://www.acm.nhb.gov.sg/" rel="noopener">Asian Civilisations Museum</a>.</strong> Trade, faith and craft across Asia, in a riverside colonial building.</li><li><strong><a href="https://www.nationalgallery.sg/" rel="noopener">National Gallery Singapore</a>.</strong> Go for the building: the former Supreme Court and City Hall joined under a glass roof. Its main Southeast Asian gallery is closed until late 2027.</li></ul></div></details>
+<details><summary>For the F1 fans</summary><div class="in"><p>The <a href="https://www.formula1.com/en/latest/article/formula-1-reveals-calendar-for-2027-season-with-10-sprint-events.5J8ePLyjRuMyWEIDNUKgY4" rel="noopener">Singapore Grand Prix</a> is a night race in October, so there is no racing while you are here. But the <a href="https://singaporegp.sg/en/fanzone/f1-insights/2021/past-and-present-marina-bay-street-circuit" rel="noopener">Marina Bay Street Circuit</a> is mostly ordinary city road, and you can walk most of the lap any day. It is about 5 km and best at dusk. Start at Promenade MRT and the <a href="https://www.google.com/maps/search/?api=1&amp;query=F1+Pit+Building+1+Republic+Boulevard+Singapore" rel="noopener">Pit Building</a>, and finish at the <a href="https://www.singaporeflyer.com/en" rel="noopener">Singapore Flyer</a>, which looks straight down on the pit straight.</p></div></details>
+<details id="happening"><summary>Happening while you are here</summary><div class="in"><ul class="plain"><li><strong>Ramadan night bazaars</strong> at Geylang Serai and Kampong Gelam. Ramadan is expected to run from 8 February to 9 March, so they should be on, though the 2027 bazaar dates are not announced yet. Go after 4 pm, or after sunset when they are liveliest, and go hungry.</li><li><strong><a href="https://www.gardensbythebay.com.sg/en/plan-your-visit/opening-hours.html" rel="noopener">Gardens by the Bay</a> maintenance closures.</strong> <a href="https://www.gardensbythebay.com.sg/en/things-to-do/attractions/cloud-forest.html" rel="noopener">Cloud Forest</a> on Tuesday 23 February, Floral Fantasy on Wednesday 24 February, <a href="https://www.gardensbythebay.com.sg/en/things-to-do/attractions/flower-dome.html" rel="noopener">Flower Dome</a> on Tuesday 2 March, OCBC Skyway on Wednesday 3 March.</li></ul></div></details>
+<details><summary>What we would skip</summary><div class="in"><ul class="plain"><li><strong><a href="https://www.rwsentosa.com/en/attractions/universal-studios-singapore" rel="noopener">Universal Studios Singapore</a>.</strong> Small, and many of its rides exist at home. A fair choice with kids; otherwise skip it.</li></ul></div></details>
+</div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1400 96" preserveAspectRatio="none" aria-hidden="true"><g filter="url(#wc)" style="mix-blend-mode:multiply"><path d="M-20,21.8C-8.3,22.3 26.7,22.4 50,24.9C73.3,27.4 96.7,35.2 120,37C143.3,38.8 166.7,36.2 190,35.7C213.3,35.2 236.7,35.9 260,33.9C283.3,31.9 306.7,26.3 330,23.7C353.3,21.2 376.7,20.5 400,18.5C423.3,16.4 446.7,12.8 470,11.3C493.3,9.8 516.7,10.2 540,9.4C563.3,8.7 586.7,7.6 610,6.8C633.3,6 656.7,2.1 680,4.6C703.3,7 726.7,17.2 750,21.5C773.3,25.9 796.7,28.2 820,30.8C843.3,33.4 866.7,36.6 890,37.1C913.3,37.5 936.7,33.8 960,33.2C983.3,32.6 1006.7,34.7 1030,33.4C1053.3,32 1076.7,29.7 1100,25.2C1123.3,20.8 1146.7,8.5 1170,6.7C1193.3,4.9 1216.7,12.8 1240,14.4C1263.3,16 1286.7,14.4 1310,16.4C1333.3,18.4 1368.3,24.7 1380,26.4L1440,32.3C1428.3,33.7 1393.3,38.2 1370,40.4C1346.7,42.6 1323.3,44.6 1300,45.5C1276.7,46.3 1253.3,44.4 1230,45.7C1206.7,47 1183.3,51.6 1160,53.2C1136.7,54.8 1113.3,55 1090,55.1C1066.7,55.1 1043.3,54 1020,53.4C996.7,52.8 973.3,52.5 950,51.5C926.7,50.4 903.3,48.3 880,47.1C856.7,46 833.3,46.3 810,44.6C786.7,42.9 763.3,38.6 740,37C716.7,35.3 693.3,36 670,34.8C646.7,33.5 623.3,29.9 600,29.5C576.7,29.1 553.3,31.6 530,32.5C506.7,33.4 483.3,34.1 460,34.6C436.7,35.2 413.3,34.8 390,35.9C366.7,37.1 343.3,39.4 320,41.6C296.7,43.7 273.3,47.1 250,48.9C226.7,50.6 203.3,51.3 180,52C156.7,52.8 133.3,53.3 110,53.3C86.7,53.3 51.7,52.4 40,52.2Z" fill="#dcc1e3" fill-opacity="0.42" /><path d="M-20,58C-8.3,57.5 26.7,57.1 50,55.3C73.3,53.6 96.7,50.3 120,47.4C143.3,44.5 166.7,41.8 190,38C213.3,34.3 236.7,27.1 260,24.7C283.3,22.4 306.7,23.7 330,23.9C353.3,24.1 376.7,25 400,25.8C423.3,26.6 446.7,23.9 470,28.5C493.3,33.2 516.7,51 540,53.5C563.3,56.1 586.7,43.1 610,44C633.3,44.9 656.7,56.5 680,58.9C703.3,61.3 726.7,58.4 750,58.2C773.3,58 796.7,59.9 820,57.9C843.3,55.9 866.7,52.4 890,46.2C913.3,40 936.7,24.1 960,20.7C983.3,17.2 1006.7,25.2 1030,25.7C1053.3,26.1 1076.7,19.4 1100,23.1C1123.3,26.8 1146.7,43.8 1170,47.8C1193.3,51.8 1216.7,48.8 1240,47.2C1263.3,45.7 1286.7,37.2 1310,38.3C1333.3,39.5 1368.3,51.6 1380,54.2L1440,52.2C1428.3,50.5 1393.3,43.3 1370,41.9C1346.7,40.4 1323.3,43.8 1300,43.3C1276.7,42.8 1253.3,38.9 1230,38.7C1206.7,38.6 1183.3,40.5 1160,42.4C1136.7,44.3 1113.3,48.5 1090,50.1C1066.7,51.6 1043.3,50.5 1020,51.8C996.7,53.1 973.3,55.5 950,57.8C926.7,60.2 903.3,64.3 880,65.9C856.7,67.4 833.3,67.2 810,67.2C786.7,67.1 763.3,65.4 740,65.8C716.7,66.2 693.3,70.5 670,69.6C646.7,68.7 623.3,63 600,60.4C576.7,57.9 553.3,55.9 530,54.2C506.7,52.5 483.3,51.4 460,50.1C436.7,48.9 413.3,47.6 390,46.6C366.7,45.6 343.3,45.2 320,43.9C296.7,42.7 273.3,39.4 250,39.1C226.7,38.8 203.3,41.2 180,42C156.7,42.8 133.3,42.3 110,44C86.7,45.6 51.7,50.5 40,51.9Z" fill="#a05aa6" fill-opacity="0.36" /><path d="M-20,52.2C-8.3,51.1 26.7,47.3 50,45.9C73.3,44.4 96.7,43.9 120,43.2C143.3,42.6 166.7,40.9 190,41.8C213.3,42.7 236.7,47.2 260,48.7C283.3,50.3 306.7,48.7 330,51C353.3,53.3 376.7,60.3 400,62.6C423.3,65 446.7,65.2 470,65.2C493.3,65.3 516.7,65.4 540,63C563.3,60.7 586.7,52.9 610,51C633.3,49.1 656.7,50.2 680,51.5C703.3,52.9 726.7,59.8 750,59.1C773.3,58.3 796.7,49.3 820,47C843.3,44.6 866.7,45.4 890,44.7C913.3,44.1 936.7,41.5 960,43.2C983.3,44.9 1006.7,50.7 1030,55C1053.3,59.3 1076.7,68.8 1100,68.9C1123.3,69 1146.7,56.7 1170,55.7C1193.3,54.7 1216.7,62 1240,62.9C1263.3,63.9 1286.7,64.1 1310,61.5C1333.3,59 1368.3,49.8 1380,47.4L1440,72.7C1428.3,72.5 1393.3,72.6 1370,71.3C1346.7,70 1323.3,66.5 1300,64.8C1276.7,63 1253.3,61.8 1230,60.8C1206.7,59.9 1183.3,60.2 1160,59C1136.7,57.9 1113.3,54.6 1090,54C1066.7,53.5 1043.3,56.1 1020,56C996.7,55.8 973.3,53.4 950,53.1C926.7,52.8 903.3,53.3 880,54.1C856.7,54.8 833.3,56.4 810,57.8C786.7,59.1 763.3,60.8 740,62.2C716.7,63.5 693.3,64.6 670,66.2C646.7,67.7 623.3,70.2 600,71.4C576.7,72.5 553.3,72.9 530,73C506.7,73.2 483.3,72.4 460,72.3C436.7,72.3 413.3,73.6 390,72.8C366.7,71.9 343.3,68 320,67.1C296.7,66.2 273.3,67.9 250,67.3C226.7,66.7 203.3,64.9 180,63.5C156.7,62 133.3,60 110,58.5C86.7,57.1 51.7,55.2 40,54.5Z" fill="#7ba0c2" fill-opacity="0.34" /></g><g filter="url(#ink)" fill="none" stroke="#7ba0c2" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"><path d="M120,38.5C130,38.8 160,39.9 180,40C200,40.1 220,39.6 240,38.9C260,38.1 280,36.9 300,35.5C320,34.1 340,32.3 360,30.7C380,29.1 400,27.2 420,25.7C440,24.3 470,22.5 480,21.9"/><path d="M700,57C710,56.8 740,56.5 760,55.6C780,54.8 800,53.5 820,52.1C840,50.7 860,48.8 880,47.2C900,45.6 920,43.7 940,42.3C960,40.8 980,39.5 1000,38.6C1020,37.7 1040,37.1 1060,37C1080,36.9 1100,37.3 1120,38C1140,38.7 1160,40 1180,41.3C1200,42.7 1230,45.3 1240,46.1"/></g></svg>
+<section id="eat" data-page="eat">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Eat</h2>
+        <p class="sub">Singapore is extremely good at feeding people, and hawker centres are the move. Here is where we would eat, and what to order.</p>
+      </div>
+      <div class="art roomy"><img class="art-img" src="img/art-food.jpg" alt="Watercolour of a Singapore spread: chicken rice, laksa, satay, sugarcane juice, kaya toast and kopi" loading="lazy"></div>
+    </div>
+    <div class="acc"><details id="hawker-centres" open><summary>Hawker centres: where to go</summary><div class="in"><p>Hawker centres are open-air food halls where each stall has spent decades on one or two dishes, and most plates cost S$4 to S$8. No tax, no service charge, no tipping.</p><ul class="plain"><li><strong><a href="https://www.laupasat.sg/sataystreet/" rel="noopener">Lau Pa Sat</a>.</strong> Our favourite, for the balance of convenience and variety, though a little pricier than most. In the evening the road outside becomes Satay Street, lined with satay grills from 7 pm on weekdays and 3 pm at weekends. It gets very crowded, so go early. Raffles Place MRT, direct from Somerset.</li><li><strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Maxwell+Food+Centre+Singapore" rel="noopener">Maxwell Food Centre</a>.</strong> The easiest first visit. Orchard to Maxwell MRT on the Thomson-East Coast Line, no change. Next to Chinatown.</li><li><strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Tiong+Bahru+Market+Singapore" rel="noopener">Tiong Bahru Market</a>.</strong> Breakfast in a pretty old neighbourhood; go between 8 and 11 am. Pairs with a walk round the Tiong Bahru estate. Havelock MRT, direct from Orchard, or Tiong Bahru MRT.</li><li><strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Old+Airport+Road+Food+Centre+Singapore" rel="noopener">Old Airport Road Food Centre</a>.</strong> The one locals argue is the best. About 30 minutes by MRT to Dakota, with one change; worth it for the food.</li></ul></div></details>
+<details id="order" open><summary>What to order</summary><div class="in"><p>Most dishes are small and cheap, so order widely and share.</p><ul class="plain"><li><strong>Hainanese chicken rice.</strong> Poached chicken on rice cooked in chicken stock, with chilli and ginger on the side.</li><li><strong>Satay.</strong> Grilled skewers with a sweet peanut sauce.</li><li><strong>Hokkien mee.</strong> Noodles braised in prawn stock. Savoury and seafood-rich, not spicy.</li><li><strong>Roti prata.</strong> Flaky griddled flatbread, dipped in curry.</li><li><strong>Kaya toast and kopi.</strong> The classic breakfast: toast with coconut jam and butter, soft-boiled eggs, and local coffee.</li><li><strong>Nasi lemak.</strong> Coconut rice with fried chicken, egg and sweet-spicy sambal.</li><li><strong>Char kway teow.</strong> Smoky stir-fried flat rice noodles in sweet dark soy.</li><li><strong>Carrot cake.</strong> No carrot, and not a cake: fried cubes of radish cake with egg. Order &ldquo;white&rdquo; (savoury) or &ldquo;black&rdquo; (sweet soy).</li><li><strong>Chendol.</strong> Shaved ice with coconut milk and palm sugar, for when the heat wins.</li></ul></div></details>
+<details id="hawker-how"><summary>How a hawker centre works</summary><div class="in"><p>Find a table first (a tissue packet on a table means it is taken), order and pay at the stall, and return your tray when you finish. Bring small cash, and a packet of tissues or wet wipes: napkins are not provided, and you may want to wipe down your seat or table.</p></div></details>
+</div>
+  </div>
+</section>
+
+<section id="rsvp" data-page="rsvp">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>RSVP</h2>
+        <p class="sub">One reply per household is perfect.</p>
+      </div>
+    </div>
+    <div class="rsvp">
+      <p><strong>Please reply by 15 December 2026.</strong> If you have already replied by card or online, there is no need to reply again. Use the form only if something has changed.</p>
+      <p><strong>Plus-ones are welcome.</strong> Just add their names to your reply.</p>
+      <p>The day begins with our tea ceremony and vow exchange at 10:00, followed by lunch from 12:30. The form asks whether you are joining us for the whole day or for lunch only. <strong>If you choose lunch only, you will miss the ceremony.</strong></p>
+      <a class="btn" id="rsvp-btn" href="#rsvp" aria-disabled="true">RSVP form opening shortly</a>
+    </div>
+  </div>
+</section>
+
+<section id="our-story" data-page="home">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Our story</h2>
+        <p class="sub">How we met, and how we got here.</p>
+      </div>
+    </div>
+    <div class="placeholder"><p class="ph-label">Coming soon</p><p>[Placeholder: our story. How we met, our first date, the proposal, and a few favourite moments.]</p></div>
+    <h3 class="grp">Photos</h3>
+    <ul class="gallery"><li class="ph-photo"><span>Photo 1</span></li><li class="ph-photo"><span>Photo 2</span></li><li class="ph-photo"><span>Photo 3</span></li><li class="ph-photo"><span>Photo 4</span></li><li class="ph-photo"><span>Photo 5</span></li><li class="ph-photo"><span>Photo 6</span></li></ul>
+  </div>
+</section>
+
+<section id="faq" data-page="faq">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>FAQ</h2>
+        <p class="sub">Tap a question to open it. If yours is not here, <a href="#ask">send us your question</a>.</p>
+      </div>
+    </div>
+    <h3 class="grp">The day in Singapore</h3>
+    <div class="acc"><details><summary>What time should I arrive?</summary><div class="in"><p>Please arrive by 10:00 am. Everyone is invited to the tea ceremony at 10:00 in the Mahogany Room on Level 5, followed by the vow exchange at about 11:00. Lunch begins at 12:30 pm and we finish at about 3:00 pm.</p></div></details><details><summary>Where exactly is it?</summary><div class="in"><p><a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/" rel="noopener">Hilton Singapore Orchard</a>, 333 Orchard Road, Singapore 238867. The tea ceremony and vows are in the <a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/events/" rel="noopener">Mahogany Room</a> and lunch is at <a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/dining/estate/" rel="noopener">Estate</a>, both inside the hotel. <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Singapore+Orchard%2C+333+Orchard+Road" rel="noopener">Open in Google Maps</a></p></div></details><details><summary>What should I wear?</summary><div class="in"><p>Dress as you would for a special lunch at a nice hotel: a dress, or a shirt with trousers, and a jacket if you like one. Choose light, breathable fabrics for the trip over, and bring a wrap or light layer because the hotel is kept cool. Comfortable shoes are fine. There is no need for anything formal or floor-length.</p></div></details><details><summary>What should I expect on the day?</summary><div class="in"><p>A relaxed morning and a long lunch, all inside the hotel: the tea ceremony, a short exchange of vows, then a buffet lunch at Estate. Seating is open, so sit wherever you like in our reserved area. There is no long programme to sit through, and we will come round to every table.</p></div></details><details><summary>What is a tea ceremony?</summary><div class="in"><p>A Chinese wedding tradition. The couple serves tea to parents and elders in order of seniority as a mark of respect, and the elders give their blessings in return. All guests are invited.</p></div></details><details><summary>Can I bring my children?</summary><div class="in"><p>Yes. Please include them in your RSVP so the restaurant has the right numbers.</p></div></details><details><summary>Can I bring a plus-one?</summary><div class="in"><p>Yes, plus-ones are welcome. Just add their name to your RSVP.</p></div></details><details><summary>What about dietary needs?</summary><div class="in"><p>Lunch is a buffet at Estate with plenty of choice, so there is usually something for most diets. We cannot arrange special meals or control allergens in the kitchen, so if you have a serious allergy, please ask the restaurant staff about each dish on the day.</p></div></details></div>
+    <h3 class="grp">Travel</h3>
+    <div class="acc"><details><summary>What will the weather be like?</summary><div class="in"><p>Singapore in late February is warm and humid, around 25 to 31&deg;C (77 to 88&deg;F), with the occasional short, heavy shower. A small umbrella is worth packing. The whole day is indoors and air-conditioned, so you will only feel the heat getting there.</p></div></details><details><summary>Do I need a visa for Singapore?</summary><div class="in"><p>Not for a short visit on a US or Colombian passport. Everyone must submit the free SG Arrival Card online within three days before arriving, and your passport should be valid for at least six months. Rules differ by nationality, so if you hold another passport please check the <a href="https://www.ica.gov.sg/enter-depart/entry_requirements">official ICA entry requirements</a> before you book.</p></div></details><details><summary>Do I need a yellow fever vaccination?</summary><div class="in"><p>Only if you have been in Colombia, or another country with yellow fever risk, in the six days before you land; a layover of more than 12 hours counts. You will need a vaccination certificate, and the vaccine must be given at least 10 days before you arrive, so see your doctor early. <a href="https://www.ica.gov.sg/enter-transit-depart/entering-singapore/yellow-fever-vaccination-certificate">ICA&rsquo;s yellow fever rules</a></p></div></details><details><summary>Is there anything I should leave at home?</summary><div class="in"><ul class="plain"><li>Vapes and e-cigarettes. They are illegal even to possess, and fines are heavy.</li><li>Cannabis and CBD products, including anything legal in your state.</li><li><strong>Some prescription medicines, unless approved in advance.</strong> Up to three months&rsquo; supply of your own prescription medicine is fine, in its labelled pharmacy container, with your prescription or a doctor&rsquo;s letter. But anything containing a controlled substance needs <a href="https://www.hsa.gov.sg/personal-medication/apply-approval">approval from the Health Sciences Authority</a>, applied for at least two weeks before you arrive. That includes ADHD medicines (such as Adderall, Vyvanse or Ritalin), strong painkillers with codeine or oxycodone, and anxiety or sleep medicines (such as Xanax, Valium, Klonopin or Ambien). <a href="https://www.hsa.gov.sg/travelling-with-medication-and-medical-devices/personal-medications/">HSA&rsquo;s full rules</a></li><li>Nicotine patches or gum bought outside Singapore.</li></ul></div></details><details><summary>How do I get around?</summary><div class="in"><p>The MRT is excellent: tap a contactless card, your phone or a local EZ-Link card at the gate, one each. Taxis are metered and can be flagged down. Uber-style rides are called private hire cars and are booked in an app such as Grab or Gojek. Set the apps up before you leave home. Carry a little cash for hawker stalls. <a href="#getting-around">More on getting around</a></p></div></details><details><summary>Do I need a plug adapter or a voltage converter?</summary><div class="in"><p>Everyone needs a <strong>plug adapter</strong>: Singapore uses UK-style three-pin plugs and 230V power. Phone, laptop and camera chargers almost always say &ldquo;100&ndash;240V&rdquo; on the label, so the adapter is all they need. Anything that says only 110V or 120V, often hair dryers and straighteners, would also need a <strong>voltage converter</strong>; it is usually easier to leave those at home.</p></div></details><details><summary>How early should I arrive in Singapore?</summary><div class="in"><p>At least three days before the wedding if you can. Singapore is 16 hours ahead of Seattle, so expect to wake at 4 am for the first few days. If you can stay longer, see the <a href="#things-to-do">Do</a> page.</p></div></details></div>
+    <h3 class="grp">Both celebrations</h3>
+    <div class="acc"><details><summary>Which celebration am I invited to?</summary><div class="in"><p>Both! You are welcome at either celebration, or both, if you would like to come.</p></div></details><details><summary>When will Seattle details be announced?</summary><div class="in"><p>As soon as the date and venue are confirmed.</p></div></details><details id="registry"><summary>Do you have a registry?</summary><div class="in"><p>No. Having you with us, in Singapore or Seattle, is all we could ask for. Please don&rsquo;t feel you need to bring anything.</p></div></details></div>
+
+    <div class="ask" id="ask">
+      <h3>Didn&rsquo;t find your answer?</h3>
+      <p>Send us your question and we will get back to you.</p>
+      <a class="btn" href="https://airtable.com/appozKSLZsYTBl67L/pagoFXvkypbAC56Dh/form" rel="noopener">Ask us a question</a>
+    </div>
+  </div>
+</section>
+
+<svg class="wave keep" viewBox="0 0 1400 96" preserveAspectRatio="none" aria-hidden="true"><g filter="url(#wc)" style="mix-blend-mode:multiply"><path d="M-20,20.8C-8.3,22.6 26.7,28.5 50,31.4C73.3,34.2 96.7,37.1 120,37.9C143.3,38.8 166.7,37.6 190,36.5C213.3,35.5 236.7,34.4 260,31.5C283.3,28.7 306.7,21.7 330,19.2C353.3,16.8 376.7,18.4 400,17C423.3,15.5 446.7,11.7 470,10.5C493.3,9.3 516.7,10.2 540,10C563.3,9.9 586.7,8 610,9.6C633.3,11.3 656.7,16.6 680,20C703.3,23.3 726.7,27.6 750,29.6C773.3,31.7 796.7,32.7 820,32.1C843.3,31.5 866.7,25.6 890,25.9C913.3,26.2 936.7,35.9 960,34C983.3,32.1 1006.7,14.6 1030,14.6C1053.3,14.6 1076.7,34.2 1100,34.1C1123.3,33.9 1146.7,15.7 1170,13.7C1193.3,11.7 1216.7,22 1240,22.2C1263.3,22.4 1286.7,13.6 1310,14.9C1333.3,16.2 1368.3,27.5 1380,30L1440,32.4C1428.3,32.9 1393.3,34.1 1370,35.5C1346.7,36.9 1323.3,39 1300,40.6C1276.7,42.2 1253.3,43.5 1230,45.1C1206.7,46.8 1183.3,48.9 1160,50.5C1136.7,52 1113.3,54.4 1090,54.4C1066.7,54.4 1043.3,51 1020,50.7C996.7,50.3 973.3,53.1 950,52.4C926.7,51.6 903.3,48.1 880,46.2C856.7,44.3 833.3,42.2 810,40.9C786.7,39.7 763.3,40.2 740,38.9C716.7,37.5 693.3,34.3 670,32.7C646.7,31.1 623.3,29.7 600,29.3C576.7,28.9 553.3,29.4 530,30.1C506.7,30.8 483.3,32.9 460,33.5C436.7,34 413.3,31.7 390,33.5C366.7,35.3 343.3,42.4 320,44C296.7,45.7 273.3,42.1 250,43.5C226.7,44.8 203.3,50.2 180,52.2C156.7,54.2 133.3,55.7 110,55.5C86.7,55.3 51.7,51.8 40,51Z" fill="#dcc1e3" fill-opacity="0.42" /><path d="M-20,56C-8.3,54.9 26.7,51.3 50,49.3C73.3,47.3 96.7,47.6 120,44.2C143.3,40.7 166.7,31.3 190,28.4C213.3,25.6 236.7,27.9 260,27C283.3,26.2 306.7,23.7 330,23.4C353.3,23 376.7,22.5 400,24.8C423.3,27.1 446.7,32.8 470,37.2C493.3,41.6 516.7,48.3 540,51.1C563.3,53.9 586.7,54 610,54C633.3,54 656.7,50.4 680,51C703.3,51.6 726.7,60.6 750,57.5C773.3,54.5 796.7,37.9 820,32.6C843.3,27.2 866.7,24.7 890,25.3C913.3,25.8 936.7,34.9 960,35.9C983.3,36.9 1006.7,32.6 1030,31.4C1053.3,30.2 1076.7,25.5 1100,28.8C1123.3,32 1146.7,51.5 1170,51C1193.3,50.5 1216.7,26.2 1240,25.9C1263.3,25.6 1286.7,46.6 1310,49.3C1333.3,52.1 1368.3,43.8 1380,42.7L1440,51.4C1428.3,50.3 1393.3,46.1 1370,44.4C1346.7,42.8 1323.3,42.4 1300,41.4C1276.7,40.5 1253.3,38.1 1230,38.9C1206.7,39.7 1183.3,45.2 1160,46.3C1136.7,47.4 1113.3,44.1 1090,45.4C1066.7,46.6 1043.3,51.1 1020,53.8C996.7,56.5 973.3,60.3 950,61.8C926.7,63.2 903.3,61.3 880,62.5C856.7,63.7 833.3,67.8 810,69.2C786.7,70.7 763.3,71.5 740,71.2C716.7,70.9 693.3,68.6 670,67.4C646.7,66.3 623.3,66.4 600,64.3C576.7,62.1 553.3,56.9 530,54.6C506.7,52.4 483.3,52.5 460,50.7C436.7,48.9 413.3,44.8 390,43.8C366.7,42.8 343.3,45.1 320,44.5C296.7,43.9 273.3,40.5 250,40.2C226.7,39.9 203.3,41.1 180,42.7C156.7,44.3 133.3,47.8 110,49.8C86.7,51.7 51.7,53.5 40,54.3Z" fill="#7ba0c2" fill-opacity="0.36" /><path d="M-20,50.6C-8.3,49.9 26.7,47.7 50,46.1C73.3,44.5 96.7,41.6 120,40.8C143.3,40 166.7,39.5 190,41.1C213.3,42.8 236.7,47.3 260,50.6C283.3,53.9 306.7,59.2 330,60.9C353.3,62.7 376.7,60.9 400,61C423.3,61.1 446.7,60.6 470,61.3C493.3,61.9 516.7,64.3 540,64.9C563.3,65.5 586.7,67.3 610,64.7C633.3,62.2 656.7,52.8 680,49.7C703.3,46.6 726.7,46.7 750,46.1C773.3,45.5 796.7,46.7 820,46.1C843.3,45.5 866.7,41.2 890,42.6C913.3,43.9 936.7,53.2 960,54.2C983.3,55.1 1006.7,46.9 1030,48.4C1053.3,50 1076.7,63.6 1100,63.6C1123.3,63.5 1146.7,48.3 1170,48.2C1193.3,48.2 1216.7,60.4 1240,63.4C1263.3,66.5 1286.7,68.1 1310,66.4C1333.3,64.7 1368.3,55.5 1380,53.3L1440,72.3C1428.3,72.2 1393.3,72.5 1370,72C1346.7,71.5 1323.3,70.3 1300,69.2C1276.7,68.1 1253.3,67.4 1230,65.6C1206.7,63.9 1183.3,59.9 1160,58.7C1136.7,57.5 1113.3,58.7 1090,58.4C1066.7,58.1 1043.3,57.3 1020,56.8C996.7,56.4 973.3,55.4 950,55.8C926.7,56.2 903.3,58.2 880,59.3C856.7,60.4 833.3,61.7 810,62.4C786.7,63.2 763.3,62.9 740,63.9C716.7,64.8 693.3,67.2 670,68C646.7,68.9 623.3,68 600,69.2C576.7,70.4 553.3,74.1 530,75.3C506.7,76.4 483.3,76.7 460,76.1C436.7,75.5 413.3,72.8 390,71.8C366.7,70.7 343.3,70.9 320,70C296.7,69 273.3,67.5 250,66.2C226.7,64.8 203.3,63.9 180,62.1C156.7,60.2 133.3,56.1 110,55.2C86.7,54.3 51.7,56.4 40,56.6Z" fill="#a05aa6" fill-opacity="0.34" /></g><g filter="url(#ink)" fill="none" stroke="#7ba0c2" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"><path d="M120,38.5C130,38.8 160,39.9 180,40C200,40.1 220,39.6 240,38.9C260,38.1 280,36.9 300,35.5C320,34.1 340,32.3 360,30.7C380,29.1 400,27.2 420,25.7C440,24.3 470,22.5 480,21.9"/><path d="M700,57C710,56.8 740,56.5 760,55.6C780,54.8 800,53.5 820,52.1C840,50.7 860,48.8 880,47.2C900,45.6 920,43.7 940,42.3C960,40.8 980,39.5 1000,38.6C1020,37.7 1040,37.1 1060,37C1080,36.9 1100,37.3 1120,38C1140,38.7 1160,40 1180,41.3C1200,42.7 1230,45.3 1240,46.1"/></g></svg>
+<section class="close">
+  <div class="wrap">
+    <h2>We hope you can make it.</h2>
+    <p>It would mean a great deal to have you with us, in either city.</p>
+    <p><a class="btn" data-rsvp href="#rsvp">RSVP</a></p>
+    <p class="small">Singapore: please reply by 15 December 2026.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img class="foot-orchid" src="img/foot-orchid.jpg" width="64" height="64" alt="" loading="lazy">
+    <p>With love, Charlotte &amp; Preston</p>
+  </div>
+</footer>
+<script>
+// RSVP form link. Paste the published form URL here to switch every RSVP button on.
+var RSVP_URL = "https://airtable.com/appozKSLZsYTBl67L/paggfO0ZA5Hy0mhjy/form";
+(function () {
+  var btn = document.getElementById("rsvp-btn");
+  if (RSVP_URL) {
+    btn.removeAttribute("aria-disabled");
+    btn.textContent = "Open the RSVP form";
+    var all = document.querySelectorAll("#rsvp-btn"); // every other RSVP link goes to the RSVP page first
+    for (var i = 0; i < all.length; i++) { all[i].href = RSVP_URL; all[i].setAttribute("rel", "noopener"); }
+  } else {
+    btn.addEventListener("click", function (e) { e.preventDefault(); });
+  }
+  // Days until the Singapore celebration (midnight Singapore time, 27 Feb 2027).
+  var hook = document.getElementById("hook");
+  var days = Math.ceil((Date.UTC(2027, 1, 26, 16) - Date.now()) / 864e5);
+  if (days > 1) { hook.innerHTML = "<b>" + days + "</b> days until Singapore"; hook.hidden = false; }
+  else if (days === 1) { hook.innerHTML = "<b>Tomorrow</b> in Singapore"; hook.hidden = false; }
+  else if (days === 0) { hook.innerHTML = "<b>Today</b> in Singapore"; hook.hidden = false; }
+  function fmt(zone) {
+    try {
+      return new Intl.DateTimeFormat("en-GB", {
+        timeZone: zone, weekday: "short", hour: "numeric", minute: "2-digit", hour12: true
+      }).format(new Date());
+    } catch (e) { return ""; }
+  }
+  function tick() {
+    document.getElementById("clock-sin").textContent = fmt("Asia/Singapore");
+    document.getElementById("clock-sea").textContent = fmt("America/Los_Angeles");
+  }
+  tick();
+  setInterval(tick, 30000);
+})();
+
+// Simple page views: each section is its own page, chosen by the link's #name.
+(function () {
+  var pages = document.querySelectorAll("[data-page]");
+  var navLinks = document.querySelectorAll(".nav a");
+  var close = document.querySelector("section.close");
+  var order = ["home","singapore","travel","eat","things-to-do","seattle","faq","rsvp"];
+  var names = {home:"Home","singapore":"Singapore","seattle":"Seattle","travel":"Travel","things-to-do":"Do","eat":"Eat","faq":"FAQ","rsvp":"RSVP"};
+  // previous / next links at the bottom of each page
+  order.forEach(function (v, k) {
+    if (v === "home") return;
+    var sec = document.getElementById(v); if (!sec) return;
+    var wrap = sec.querySelector(".wrap") || sec;
+    var p = document.createElement("nav"); p.className = "pager"; p.setAttribute("aria-label", "More pages");
+    var prev = order[k - 1], next = order[k + 1];
+    p.innerHTML = '<a href="#' + prev + '">&larr; ' + names[prev] + '</a>' + (next ? '<a href="#' + next + '">' + names[next] + ' &rarr;</a>' : '<a href="#home">Home &rarr;</a>');
+    wrap.appendChild(p);
+  });
+  function viewFor(id) {
+    if (!id || id === "home") return "home";
+    var el = document.getElementById(id);
+    if (!el) return "home";
+    var pg = el.closest("[data-page]");
+    return pg ? pg.getAttribute("data-page") : "home";
+  }
+  function show() {
+    var id = decodeURIComponent((location.hash || "").slice(1));
+    if (id === "food") id = "eat"; // old link to this page
+    var view = viewFor(id);
+    document.body.setAttribute("data-view", view);
+    for (var i = 0; i < pages.length; i++) pages[i].hidden = pages[i].getAttribute("data-page") !== view;
+    if (close) close.hidden = view === "rsvp";
+    for (var j = 0; j < navLinks.length; j++) {
+      var a = navLinks[j], target = (a.getAttribute("href") || "").slice(1);
+      if (target === view && !a.classList.contains("mark")) { a.setAttribute("aria-current", "page"); var ul = a.closest("ul"); if (ul) ul.scrollLeft = a.offsetLeft - (ul.clientWidth - a.offsetWidth) / 2; } else a.removeAttribute("aria-current");
+    }
+    document.title = view === "home" ? "Charlotte & Preston" : names[view] + " \u00b7 Charlotte & Preston";
+    var el = id && id !== view && id !== "home" ? document.getElementById(id) : null;
+    if (el) { if (el.tagName === "DETAILS") el.open = true; el.scrollIntoView(); } else window.scrollTo(0, 0);
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (a && a.getAttribute("href") === (location.hash || "#home")) { e.preventDefault(); show(); }
+  });
+  window.addEventListener("hashchange", show);
+  show();
+})();
+
+// Menu button on narrow screens
+(function () {
+  var nav = document.querySelector(".nav"), btn = document.querySelector(".nav-toggle");
+  if (!nav || !btn) return;
+  function set(open) { nav.classList.toggle("open", open); btn.setAttribute("aria-expanded", open ? "true" : "false"); }
+  btn.addEventListener("click", function () { set(!nav.classList.contains("open")); });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) set(false); });
+  document.addEventListener("click", function (e) { if (!nav.contains(e.target)) set(false); });
+})();
+</script>
+
+</body>
+</html>
