@@ -478,15 +478,18 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
 #travel .sec-h.first { margin-top: 8px; }
 #travel .acc .in .steps { margin-top: 14px; }
 /* Singapore layout, Nov 16 (pm): below the orchid everything spans the full width, like Travel.
-   Schedule and What to wear sit side by side; the four info blocks run four across; light rules only. */
+   The day (schedule) sits beside the venue info; Finding your way follows; What to wear closes the page as its own band. Light rules only. */
 #singapore .schedule { border-top-color: var(--rule); }
+#singapore .attire { margin: clamp(40px, 6vw, 64px) 0 0; }
 @media (min-width: 900px) {
-  #singapore .day-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: start; margin-bottom: 44px; }
-  #singapore .day-grid .schedule, #singapore .day-grid .attire { max-width: none; margin-bottom: 0; }
-  #singapore .day-grid .attire { padding: 24px; }
-  #singapore .day-grid .wear { grid-template-columns: repeat(2, 1fr); }
-  #singapore .day-grid .attire p { max-width: none; }
-  #singapore .cols.arrive { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; column-gap: clamp(24px, 3vw, 44px); }
+  #singapore .sg-day { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+  #singapore .sg-day .schedule { max-width: none; margin-bottom: 0; }
+  #singapore .sg-day .cols.arrive { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; gap: 32px clamp(24px, 3vw, 40px); padding-top: 18px; }
+  #singapore .attire { max-width: none; padding: 24px 28px; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); column-gap: clamp(28px, 4vw, 56px); align-items: start; }
+  #singapore .attire h3 { grid-column: 1 / -1; }
+  #singapore .attire .wear { grid-column: 1; grid-row: 2 / span 3; margin-bottom: 0; }
+  #singapore .attire p { grid-column: 2; max-width: none; margin-top: 0; }
+  #singapore .attire p + p { margin-top: 12px; }
 }
 /* Home: Our story and its photo grid use the full width, like the tiles above them */
 [data-page="home"] .placeholder, [data-page="home"] .gallery { max-width: none; }
@@ -641,7 +644,7 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
 
     <aside class="key" aria-label="Need to know"><h3>Need to know</h3><dl><div><dt>When</dt><dd>Saturday, 27 February 2027. <strong>Please arrive by 10:00 am</strong> for the tea ceremony.</dd></div><div><dt>Where</dt><dd><a href="https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/" rel="noopener">Hilton Singapore Orchard</a>, 333 Orchard Road, Singapore 238867. <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Singapore+Orchard%2C+333+Orchard+Road" rel="noopener">Map</a></dd></div><div><dt>Wear</dt><dd>Smart lunch attire in light fabrics, plus a light layer for the air-conditioning. <a href="#attire">More</a></dd></div><div><dt>RSVP</dt><dd>By 15 December 2026. <a href="#rsvp">RSVP</a></dd></div></dl></aside>
 
-    <div class="day-grid">
+    <div class="sg-day">
     <ol class="schedule">
       <li>
         <div class="time">10:00 am</div>
@@ -676,20 +679,6 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
       </li>
     </ol>
 
-    <div class="attire" id="attire">
-      <h3>What to wear</h3>
-      <ul class="wear">
-        <li><svg class="ico " aria-hidden="true"><use href="#i-dress"/></svg><strong>A dress</strong><span>Knee or midi length is perfect</span></li>
-        <li><svg class="ico " aria-hidden="true"><use href="#i-shirt"/></svg><strong>Shirt and trousers</strong><span>Jacket optional, tie not needed</span></li>
-        <li><svg class="ico " aria-hidden="true"><use href="#i-layer"/></svg><strong>A light layer</strong><span>The hotel is kept cool</span></li>
-        <li><svg class="ico " aria-hidden="true"><use href="#i-shoe"/></svg><strong>Comfortable shoes</strong><span>Flats are fine</span></li>
-      </ul>
-      <p>Think special lunch at a nice hotel. Light, breathable fabrics for the trip over. No need for anything formal or floor-length.</p>
-      <p class="see-looks">Hot, humid-weather looks, in photos: <a href="https://www.lovebonito.com/intl/women/wedding-guest-dresses" rel="noopener">dresses</a> (Love, Bonito, a Singapore label) &middot; <a href="https://suitsupply.com/en-us/men/shirts/linen" rel="noopener">linen shirts</a> (Suitsupply), worn with light trousers</p>
-      <p class="see-looks">What to look for in fabrics: <a href="https://www.davidsbridal.com/content/style-guides/the-best-summer-wedding-guest-dresses-for-hot-humid-weather" rel="noopener">dresses</a> &middot; <a href="https://orlebarbrown.com/blogs/ob-club/what-to-wear-to-a-destination-wedding-when-youre-a-guest" rel="noopener">menswear</a></p>
-    </div>
-    </div>
-
     <div class="cols arrive">
       <div>
         <svg class="ico " aria-hidden="true"><use href="#i-pin"/></svg>
@@ -712,6 +701,7 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
         <h3>Good to know</h3>
         <p>Everything is indoors and air-conditioned. Children are very welcome. Seating at lunch is open.</p>
       </div>
+    </div>
     </div>
 
     <div class="way" id="finding-your-way">
@@ -779,6 +769,19 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
   <text x="8" y="472" class="rn" style="text-anchor:start">Diagram, not to scale</text>
 </svg></figure>
       </div>
+    </div>
+
+    <div class="attire" id="attire">
+      <h3>What to wear</h3>
+      <ul class="wear">
+        <li><svg class="ico " aria-hidden="true"><use href="#i-dress"/></svg><strong>A dress</strong><span>Knee or midi length is perfect</span></li>
+        <li><svg class="ico " aria-hidden="true"><use href="#i-shirt"/></svg><strong>Shirt and trousers</strong><span>Jacket optional, tie not needed</span></li>
+        <li><svg class="ico " aria-hidden="true"><use href="#i-layer"/></svg><strong>A light layer</strong><span>The hotel is kept cool</span></li>
+        <li><svg class="ico " aria-hidden="true"><use href="#i-shoe"/></svg><strong>Comfortable shoes</strong><span>Flats are fine</span></li>
+      </ul>
+      <p>Think special lunch at a nice hotel. Light, breathable fabrics for the trip over. No need for anything formal or floor-length.</p>
+      <p class="see-looks">Hot, humid-weather looks, in photos: <a href="https://www.lovebonito.com/intl/women/wedding-guest-dresses" rel="noopener">dresses</a> (Love, Bonito, a Singapore label) &middot; <a href="https://suitsupply.com/en-us/men/shirts/linen" rel="noopener">linen shirts</a> (Suitsupply), worn with light trousers</p>
+      <p class="see-looks">What to look for in fabrics: <a href="https://www.davidsbridal.com/content/style-guides/the-best-summer-wedding-guest-dresses-for-hot-humid-weather" rel="noopener">dresses</a> &middot; <a href="https://orlebarbrown.com/blogs/ob-club/what-to-wear-to-a-destination-wedding-when-youre-a-guest" rel="noopener">menswear</a></p>
     </div>
   </div>
 </section>
