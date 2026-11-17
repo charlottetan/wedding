@@ -500,6 +500,33 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
 }
 /* Home: Our story and its photo grid use the full width, like the tiles above them */
 [data-page="home"] .placeholder, [data-page="home"] .gallery { max-width: none; }
+/* Our story: text, with the proposal photos beside the proposal paragraphs on wide screens */
+.story p { margin: 0 0 1.05em; }
+.story-proposal { display: grid; gap: 6px 0; margin-bottom: 1.05em; }
+.story-pics { display: grid; grid-template-columns: 16fr 9fr; gap: 12px; max-width: var(--col); margin: 4px 0 8px; }
+.story-pics figure { margin: 0; }
+.story-pics img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 3px; border: 1px solid var(--rule); background: rgba(220,193,227,.2); }
+.story-pics .picnic img { aspect-ratio: 4 / 3; }
+.story-pics .ring img { aspect-ratio: 3 / 4; object-position: 50% 68%; }
+.story-sign { font-family: var(--display); font-style: italic; font-size: 1.6rem; color: var(--orchid); margin-top: .2em !important; }
+@media (min-width: 1000px) {
+  .story-proposal { grid-template-columns: minmax(0, var(--col)) minmax(0, 1fr); column-gap: clamp(32px, 4vw, 56px); align-items: start; }
+  .story-proposal .story-text p:last-child { margin-bottom: 0; }
+  .story-pics { grid-template-columns: 1fr; max-width: none; margin: 6px 0 0; }
+  .story-pics .ring img { aspect-ratio: 4 / 3; object-position: 50% 66%; }
+}
+.story + .grp { margin-top: 36px; }
+/* Our story photo grid: two tall photos either side of four wide ones; on phones, two columns */
+.story-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.story-gallery li { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 3px; border: 1px solid var(--rule); background: rgba(220,193,227,.2); }
+.story-gallery li.tall { aspect-ratio: 3 / 4; }
+.story-gallery img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (min-width: 700px) {
+  .story-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .story-gallery li.tall { aspect-ratio: auto; grid-row: 1 / span 2; }
+  .story-gallery li.tall.first { grid-column: 1; }
+  .story-gallery li.tall.last { grid-column: 4; }
+}
 /* Travel layout, Nov 16 (pm): every section is a heading, a three-column row, then full-width blocks.
    The header art sits beside the title, jump links and first heading only; the columns start below it. */
 @media (min-width: 900px) {
@@ -1003,9 +1030,32 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
         <p class="sub">How we met, and how we got here.</p>
       </div>
     </div>
-    <div class="placeholder"><p class="ph-label">Coming soon</p><p>[Placeholder: our story. How we met, our first date, the proposal, and a few favourite moments.]</p></div>
+    <div class="story">
+      <p>Preston and I met on the apps in May 2024. For our first date, he skipped the restaurant and cooked me a grand meal, with swordfish he had bought fresh that day. I had never eaten swordfish before, and it was delicious. Looking back, that dinner told me most of what I needed to know about him.</p>
+      <p>He has been that thoughtful ever since. He keeps an emergency stash of mushrooms in the kitchen because he knows how much I love them, and he often surprises me with my favourite bubble tea, chicken rice or sushi. He notices the small things too, like whether my knitting is making progress or being undone. Once, at a board game convention, maple syrup leaked all through my backpack just as my game was starting. He dropped everything to clean it up, made sure my knitting was safe first, and turned a bad morning into a good day.</p>
+      <div class="story-proposal">
+        <div class="story-text">
+          <p>About six months in, we started making a little board game of our own called Woodland Home, starring our two cats. We worked on it for a year and a half, and I thought I knew every card. Then, on a sunny day in May 2026, he insisted we take it to the woods for a picnic and a game. I convinced him that a park was woodsy enough.</p>
+          <p>Partway through the game, the cat card turned up with an instruction I had never seen: open envelope A once both cats have been revealed. Inside was a lovely letter about our life together, and then he asked me to marry him. I said yes, of course. He told me afterwards that the day we started the game was the day he knew.</p>
+          <p>The picnic was just as carefully planned. There were vegetables because I had been saying I needed more of them, proper utensils because I don&rsquo;t like eating finger food with my hands, and tiny champagne bottles he chose because they were shiny and he knows I love shiny things.</p>
+        </div>
+        <div class="story-pics">
+          <figure class="picnic"><img src="img/story-proposal-picnic.jpg" width="1280" height="960" loading="lazy" alt="Preston and Charlotte on a picnic blanket in a park, with their board game Woodland Home laid out between them and a picnic platter beside it."></figure>
+          <figure class="ring"><img src="img/story-ring.jpg" width="720" height="1280" loading="lazy" alt="Charlotte&rsquo;s hand wearing her engagement ring."></figure>
+        </div>
+      </div>
+      <p>We feel very lucky to have found each other, and even luckier to celebrate with the people we love, in Singapore and in Seattle. We can&rsquo;t wait to see you.</p>
+      <p class="story-sign">Charlotte &amp; Preston</p>
+    </div>
     <h3 class="grp">Photos</h3>
-    <ul class="gallery"><li class="ph-photo"><span>Photo 1</span></li><li class="ph-photo"><span>Photo 2</span></li><li class="ph-photo"><span>Photo 3</span></li><li class="ph-photo"><span>Photo 4</span></li><li class="ph-photo"><span>Photo 5</span></li><li class="ph-photo"><span>Photo 6</span></li></ul>
+    <ul class="gallery story-gallery">
+      <li class="tall first"><img src="img/story-forest-bridge.jpg" width="960" height="1280" loading="lazy" alt="Preston and Charlotte on a suspension bridge in a forest, June 2024."></li>
+      <li class="tall last"><img src="img/story-costume-party.jpg" width="839" height="1280" loading="lazy" alt="Charlotte in a gold 1920s flapper dress and Preston in a waistcoat, bow tie and flat cap at a costume party."></li>
+      <li><img src="img/story-cloud-forest.jpg" width="1280" height="960" loading="lazy" alt="Preston and Charlotte inside the Cloud Forest dome at Gardens by the Bay, Singapore."></li>
+      <li><img src="img/story-tulips.jpg" width="1280" height="960" loading="lazy" alt="Preston and Charlotte in front of rows of tulips in bloom."></li>
+      <li><img src="img/story-cat.jpg" width="1280" height="960" loading="lazy" alt="One of our cats, dark brown with white paws, curled up on a blanket."></li>
+      <li><img src="img/story-great-wheel.jpg" width="1280" height="960" loading="lazy" alt="Preston and Charlotte in a Ferris wheel cabin above the water in Seattle."></li>
+    </ul>
   </div>
 </section>
 
