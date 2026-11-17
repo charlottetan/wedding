@@ -50,7 +50,7 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--orchid); outline-
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--rule);
 }
-.nav .bar { max-width: 68rem; margin: 0 auto; padding: 9px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 10px 24px; }
+.nav .bar { max-width: 76rem; margin: 0 auto; padding: 9px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 10px 24px; }
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 26px; min-width: 0; }
 .nav a.nav-rsvp { flex: none; background: var(--plum); color: var(--paper); padding: 10px 20px; border-radius: 2px; letter-spacing: .2em; }
 .nav a.nav-rsvp:hover { background: var(--orchid); color: var(--paper); }
@@ -358,7 +358,8 @@ section[data-page]:not(.explore) { padding-top: clamp(36px, 6vw, 64px); }
 .pill { color: var(--orchid); }
 
 .nav-toggle { display: none; }
-@media (max-width: 960px) {
+/* Menu button below 1180px: nine page links no longer fit on one row below that */
+@media (max-width: 1180px) {
   .nav .bar { flex-wrap: nowrap !important; position: relative; }
   .nav .mark { order: 0; }
   .nav-toggle { order: 1; margin-left: auto; display: inline-flex; align-items: center; gap: 8px; background: none; border: 1px solid var(--plum); color: var(--plum); padding: 9px 14px; border-radius: 2px; font: 500 12px var(--body); letter-spacing: .2em; text-transform: uppercase; cursor: pointer; }
@@ -537,8 +538,8 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
   #singapore .attire p + p { margin-top: 12px; }
   #singapore .cols.arrive { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; column-gap: clamp(24px, 3vw, 44px); }
 }
-/* Home: Our story and its photo grid use the full width, like the tiles above them */
-[data-page="home"] .placeholder, [data-page="home"] .gallery { max-width: none; }
+/* Home and Our story: placeholders and the photo grid use the full width */
+[data-page="home"] .placeholder, [data-page="home"] .gallery, [data-page="our-story"] .gallery { max-width: none; }
 /* Our story: text, with the proposal photos beside the proposal paragraphs on wide screens */
 .story p { margin: 0 0 1.05em; }
 .story-proposal { display: grid; gap: 6px 0; margin-bottom: 1.05em; }
@@ -682,6 +683,7 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
       <li><a href="#seattle">Seattle</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#registry">Registry</a></li>
+      <li><a href="#our-story">Our story</a></li>
       <li><a href="#random">Random stuff</a></li>
     </ul>
     <a class="nav-rsvp" data-rsvp href="#rsvp">RSVP</a>
@@ -1157,7 +1159,7 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
   </div>
 </section>
 
-<section id="our-story" data-page="home">
+<section id="our-story" data-page="our-story">
   <div class="wrap">
     <div class="head">
       <div>
@@ -1274,8 +1276,8 @@ var RSVP_URL = "https://airtable.com/appozKSLZsYTBl67L/paggfO0ZA5Hy0mhjy/form";
   var pages = document.querySelectorAll("[data-page]");
   var navLinks = document.querySelectorAll(".nav a");
   var close = document.querySelector("section.close");
-  var order = ["home","singapore","travel","eat","things-to-do","seattle","faq","registry","random","rsvp"];
-  var names = {home:"Home","singapore":"Singapore","seattle":"Seattle","travel":"Travel","things-to-do":"Do","eat":"Eat","faq":"FAQ","registry":"Registry","random":"Random stuff","rsvp":"RSVP"};
+  var order = ["home","singapore","travel","eat","things-to-do","seattle","faq","registry","our-story","random","rsvp"];
+  var names = {home:"Home","singapore":"Singapore","seattle":"Seattle","travel":"Travel","things-to-do":"Do","eat":"Eat","faq":"FAQ","registry":"Registry","our-story":"Our story","random":"Random stuff","rsvp":"RSVP"};
   // previous / next links at the bottom of each page
   order.forEach(function (v, k) {
     if (v === "home") return;
