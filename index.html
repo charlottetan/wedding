@@ -265,6 +265,22 @@ section[data-page]:not(.explore) { padding-top: clamp(36px, 6vw, 64px); }
 .tiles a { align-content: start; }
 .placeholder + .grp { margin-top: 36px; }
 
+.reg-list { list-style: none; margin: 0; padding: 0; max-width: 46rem; border-bottom: 1px solid var(--rule); }
+.reg-item { border-top: 1px solid var(--rule); padding: 18px 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 18px; }
+.reg-item:first-child { border-top-color: var(--plum); }
+.reg-item img { grid-row: span 3; width: 84px; height: 84px; object-fit: cover; border-radius: 2px; }
+.reg-item.noimg { grid-template-columns: minmax(0, 1fr); }
+.reg-item h3 { text-transform: none; letter-spacing: normal; margin: 0; font-family: var(--display); font-weight: 600; font-size: 1.45rem; line-height: 1.2; }
+.reg-item p { margin: 0; }
+.reg-left { font-size: 14.5px; color: var(--plum-soft); }
+.reg-item.done h3, .reg-item.done p { opacity: .55; }
+.reg-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.reg-form input { font: inherit; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 2px; background: #fff; color: var(--plum); }
+.reg-form input[type=text] { flex: 1 1 12rem; min-width: 0; }
+.reg-form input[type=number] { width: 4.5rem; }
+.reg-form .btn, .reg-item .btn { margin-top: 0; border: 0; cursor: pointer; font-family: var(--body); }
+.reg-msg { font-size: 14.5px; color: var(--orchid); margin-top: 6px !important; }
+.linkbtn { background: none; border: 0; padding: 0; font: inherit; color: var(--orchid); text-decoration: underline; cursor: pointer; }
 .ask { max-width: 46rem; margin-top: clamp(32px, 5vw, 48px); padding: 22px 24px; background: rgba(255,255,255,.6); border: 1px solid var(--rule); border-radius: 3px; }
 .ask h3 { margin: 0 0 6px; font-family: var(--display); font-weight: 600; font-size: 1.5rem; }
 .ask p { margin: 0 0 4px; }
@@ -611,6 +627,7 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
       <li><a href="#things-to-do">Do</a></li>
       <li><a href="#seattle">Seattle</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#registry">Registry</a></li>
     </ul>
     <a class="nav-rsvp" data-rsvp href="#rsvp">RSVP</a>
   </div>
@@ -668,7 +685,7 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
 </header>
 
 <main>
-<section class="explore" data-page="home" aria-label="Explore the site"><div class="wrap"><ul class="tiles"><li><a href="#singapore"><svg class="ico" aria-hidden="true"><use href="#i-orchid"/></svg><strong>Singapore</strong><span>Schedule, venue, what to wear</span></a></li><li><a href="#travel"><svg class="ico" aria-hidden="true"><use href="#i-plane"/></svg><strong>Travel</strong><span>Getting to Singapore, where to stay, getting around</span></a></li><li><a href="#eat"><svg class="ico" aria-hidden="true"><use href="#i-bowl-b"/></svg><strong>Eat</strong><span>Hawker centres and what to order</span></a></li><li><a href="#things-to-do"><svg class="ico" aria-hidden="true"><use href="#i-compass"/></svg><strong>Do</strong><span>Neighbourhoods, walks, board games and more</span></a></li><li><a href="#seattle"><svg class="ico" aria-hidden="true"><use href="#i-fir"/></svg><strong>Seattle</strong><span>Summer 2027, details to come</span></a></li><li><a href="#faq"><svg class="ico" aria-hidden="true"><use href="#i-ask"/></svg><strong>FAQ</strong><span>Arrival times, children, travel and more</span></a></li><li><a href="#rsvp"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><strong>RSVP</strong><span>Singapore: please reply by 15 December 2026</span></a></li></ul></div></section>
+<section class="explore" data-page="home" aria-label="Explore the site"><div class="wrap"><ul class="tiles"><li><a href="#singapore"><svg class="ico" aria-hidden="true"><use href="#i-orchid"/></svg><strong>Singapore</strong><span>Schedule, venue, what to wear</span></a></li><li><a href="#travel"><svg class="ico" aria-hidden="true"><use href="#i-plane"/></svg><strong>Travel</strong><span>Getting to Singapore, where to stay, getting around</span></a></li><li><a href="#eat"><svg class="ico" aria-hidden="true"><use href="#i-bowl-b"/></svg><strong>Eat</strong><span>Hawker centres and what to order</span></a></li><li><a href="#things-to-do"><svg class="ico" aria-hidden="true"><use href="#i-compass"/></svg><strong>Do</strong><span>Neighbourhoods, walks, board games and more</span></a></li><li><a href="#seattle"><svg class="ico" aria-hidden="true"><use href="#i-fir"/></svg><strong>Seattle</strong><span>Summer 2027, details to come</span></a></li><li><a href="#faq"><svg class="ico" aria-hidden="true"><use href="#i-ask"/></svg><strong>FAQ</strong><span>Arrival times, children, travel and more</span></a></li><li><a href="#registry"><svg class="ico" aria-hidden="true"><use href="#i-gift"/></svg><strong>Registry</strong><span>A few things we would love, if you would like</span></a></li><li><a href="#rsvp"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><strong>RSVP</strong><span>Singapore: please reply by 15 December 2026</span></a></li></ul></div></section>
 
 <svg class="wave" viewBox="0 0 1400 96" preserveAspectRatio="none" aria-hidden="true"><g filter="url(#wc)" style="mix-blend-mode:multiply"><path d="M-20,21.8C-8.3,22.7 26.7,25.1 50,27.2C73.3,29.3 96.7,32.6 120,34.5C143.3,36.4 166.7,38.8 190,38.6C213.3,38.4 236.7,36 260,33.2C283.3,30.4 306.7,25.7 330,22C353.3,18.4 376.7,12.7 400,11.1C423.3,9.6 446.7,12.5 470,12.6C493.3,12.7 516.7,11.5 540,11.5C563.3,11.6 586.7,13.7 610,13C633.3,12.4 656.7,4.1 680,7.6C703.3,11.1 726.7,31.4 750,33.9C773.3,36.4 796.7,24.6 820,22.8C843.3,21 866.7,20.6 890,23C913.3,25.3 936.7,34.7 960,36.8C983.3,38.8 1006.7,35.7 1030,35.1C1053.3,34.5 1076.7,35.7 1100,33.3C1123.3,30.9 1146.7,24.5 1170,20.8C1193.3,17 1216.7,13 1240,10.9C1263.3,8.9 1286.7,4.1 1310,8.4C1333.3,12.8 1368.3,32.3 1380,37L1440,30.9C1428.3,31.9 1393.3,34.3 1370,36.5C1346.7,38.7 1323.3,41.9 1300,44C1276.7,46.1 1253.3,47.3 1230,49C1206.7,50.7 1183.3,53.6 1160,54.3C1136.7,55 1113.3,53.1 1090,53.3C1066.7,53.5 1043.3,55.8 1020,55.6C996.7,55.5 973.3,53.9 950,52.3C926.7,50.7 903.3,47.6 880,46C856.7,44.4 833.3,43.7 810,42.6C786.7,41.5 763.3,40.5 740,39.3C716.7,38 693.3,36.3 670,34.9C646.7,33.4 623.3,31.1 600,30.4C576.7,29.7 553.3,30.9 530,30.7C506.7,30.6 483.3,28.8 460,29.5C436.7,30.1 413.3,32.4 390,34.6C366.7,36.9 343.3,41.1 320,43C296.7,44.8 273.3,44.9 250,45.8C226.7,46.8 203.3,47.4 180,48.7C156.7,50 133.3,52.6 110,53.7C86.7,54.7 51.7,54.9 40,55.1Z" fill="#7ba0c2" fill-opacity="0.42" /><path d="M-20,56.1C-8.3,55.5 26.7,54.8 50,52.5C73.3,50.2 96.7,45.3 120,42.3C143.3,39.3 166.7,37.1 190,34.5C213.3,32 236.7,28.4 260,27C283.3,25.6 306.7,26.3 330,26.2C353.3,26.1 376.7,26.1 400,26.3C423.3,26.6 446.7,23.1 470,27.9C493.3,32.7 516.7,50.6 540,55.2C563.3,59.7 586.7,55.6 610,55.3C633.3,55 656.7,55.5 680,53.7C703.3,51.8 726.7,45 750,44.1C773.3,43.2 796.7,49.3 820,48.5C843.3,47.8 866.7,39.2 890,39.7C913.3,40.2 936.7,53.5 960,51.5C983.3,49.6 1006.7,31.2 1030,28.1C1053.3,24.9 1076.7,32.2 1100,32.6C1123.3,33 1146.7,30.5 1170,30.3C1193.3,30.2 1216.7,27.2 1240,31.7C1263.3,36.1 1286.7,55.6 1310,56.9C1333.3,58.3 1368.3,42.6 1380,39.8L1440,49.4C1428.3,48.5 1393.3,45.2 1370,43.8C1346.7,42.4 1323.3,41.3 1300,41C1276.7,40.6 1253.3,41.2 1230,41.8C1206.7,42.4 1183.3,43.4 1160,44.6C1136.7,45.7 1113.3,47.4 1090,48.9C1066.7,50.4 1043.3,52.3 1020,53.6C996.7,54.9 973.3,55.3 950,56.9C926.7,58.5 903.3,61.6 880,63.1C856.7,64.6 833.3,64.9 810,65.9C786.7,66.9 763.3,68.6 740,69C716.7,69.5 693.3,69.6 670,68.8C646.7,68 623.3,66 600,64.3C576.7,62.6 553.3,60.7 530,58.8C506.7,56.9 483.3,55.4 460,53C436.7,50.6 413.3,45.8 390,44.4C366.7,43 343.3,44.8 320,44.5C296.7,44.2 273.3,43.1 250,42.5C226.7,41.8 203.3,40.2 180,40.4C156.7,40.7 133.3,42.4 110,43.9C86.7,45.3 51.7,48.4 40,49.3Z" fill="#dcc1e3" fill-opacity="0.36" /><path d="M-20,49.2C-8.3,48.7 26.7,47.5 50,45.9C73.3,44.3 96.7,40 120,39.5C143.3,39 166.7,41.9 190,42.8C213.3,43.7 236.7,42.5 260,44.9C283.3,47.4 306.7,55 330,57.5C353.3,60 376.7,59.3 400,60C423.3,60.6 446.7,60.6 470,61.2C493.3,61.9 516.7,62.7 540,63.8C563.3,64.9 586.7,69.8 610,67.8C633.3,65.9 656.7,55.8 680,52.3C703.3,48.9 726.7,47.9 750,47.4C773.3,47 796.7,50.1 820,49.8C843.3,49.5 866.7,46.9 890,45.8C913.3,44.7 936.7,41.2 960,43.3C983.3,45.3 1006.7,56.5 1030,57.9C1053.3,59.4 1076.7,50.8 1100,52C1123.3,53.2 1146.7,63.5 1170,65.3C1193.3,67 1216.7,62.3 1240,62.5C1263.3,62.6 1286.7,65.6 1310,66C1333.3,66.5 1368.3,65.1 1380,64.9L1440,70.6C1428.3,70.5 1393.3,69.9 1370,70C1346.7,70 1323.3,71.2 1300,70.6C1276.7,69.9 1253.3,67.9 1230,65.9C1206.7,63.9 1183.3,59.7 1160,58.4C1136.7,57.2 1113.3,59.4 1090,58.5C1066.7,57.7 1043.3,53.7 1020,53.5C996.7,53.3 973.3,56.5 950,57.3C926.7,58 903.3,57.6 880,57.9C856.7,58.2 833.3,58.5 810,59.2C786.7,59.9 763.3,61.3 740,62.3C716.7,63.2 693.3,63 670,64.9C646.7,66.8 623.3,72.6 600,73.5C576.7,74.4 553.3,70.2 530,70.5C506.7,70.8 483.3,74.7 460,75.4C436.7,76.1 413.3,75.7 390,74.7C366.7,73.7 343.3,71.2 320,69.3C296.7,67.3 273.3,63.9 250,62.9C226.7,61.8 203.3,63.4 180,62.9C156.7,62.4 133.3,61.1 110,60C86.7,58.9 51.7,56.8 40,56.2Z" fill="#aeb27c" fill-opacity="0.34" /></g><g filter="url(#ink)" fill="none" stroke="#7ba0c2" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"><path d="M120,38.5C130,38.8 160,39.9 180,40C200,40.1 220,39.6 240,38.9C260,38.1 280,36.9 300,35.5C320,34.1 340,32.3 360,30.7C380,29.1 400,27.2 420,25.7C440,24.3 470,22.5 480,21.9"/><path d="M700,57C710,56.8 740,56.5 760,55.6C780,54.8 800,53.5 820,52.1C840,50.7 860,48.8 880,47.2C900,45.6 920,43.7 940,42.3C960,40.8 980,39.5 1000,38.6C1020,37.7 1040,37.1 1060,37C1080,36.9 1100,37.3 1120,38C1140,38.7 1160,40 1180,41.3C1200,42.7 1230,45.3 1240,46.1"/></g></svg>
 <section id="singapore" data-page="singapore">
@@ -1010,6 +1027,22 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
   </div>
 </section>
 
+<section id="registry" data-page="registry">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Registry</h2>
+        <p class="sub">Having you with us is the gift. If you would still like to give something, here are a few things we would love.</p>
+      </div>
+    </div>
+    <div class="rsvp" style="margin-bottom: 30px">
+      <p><strong>How it works.</strong> Pick something below, add your name and tap <em>I&rsquo;ll get this</em> so nobody else buys the same thing. Then buy it wherever you like.</p>
+      <p style="margin-bottom: 0"><strong>Need our address?</strong> Please <a href="#ask">get in touch</a> and we will send it to you. Or bring it along, or give it to us whenever you next see us.</p>
+    </div>
+    <ul class="reg-list" id="reg-list" aria-live="polite"><li class="reg-item noimg"><p class="reg-left">Loading the list&hellip;</p></li></ul>
+  </div>
+</section>
+
 <section id="rsvp" data-page="rsvp">
   <div class="wrap">
     <div class="head">
@@ -1077,7 +1110,7 @@ a.maplink:not(:only-child) { display: inline; padding: 0; }
     <h3 class="grp">Travel</h3>
     <div class="acc"><details><summary>What will the weather be like?</summary><div class="in"><p>Singapore in late February is warm and humid, around 25 to 31&deg;C (77 to 88&deg;F), with the occasional short, heavy shower. A small umbrella is worth packing. The whole day is indoors and air-conditioned, so you will only feel the heat getting there.</p></div></details><details><summary>Do I need a visa for Singapore?</summary><div class="in"><p>Not for a short visit on a US or Colombian passport. Everyone must submit the free SG Arrival Card online within three days before arriving, and your passport should be valid for at least six months. Rules differ by nationality, so if you hold another passport please check the <a href="https://www.ica.gov.sg/enter-depart/entry_requirements">official ICA entry requirements</a> before you book.</p></div></details><details><summary>Do I need a yellow fever vaccination?</summary><div class="in"><p>Only if you have been in Colombia, or another country with yellow fever risk, in the six days before you land; a layover of more than 12 hours counts. You will need a vaccination certificate, and the vaccine must be given at least 10 days before you arrive, so see your doctor early. <a href="https://www.ica.gov.sg/enter-transit-depart/entering-singapore/yellow-fever-vaccination-certificate">ICA&rsquo;s yellow fever rules</a></p></div></details><details><summary>Is there anything I should leave at home?</summary><div class="in"><ul class="plain"><li>Vapes and e-cigarettes. They are illegal even to possess, and fines are heavy.</li><li>Cannabis and CBD products, including anything legal in your state.</li><li><strong>Some prescription medicines, unless approved in advance.</strong> Up to three months&rsquo; supply of your own prescription medicine is fine, in its labelled pharmacy container, with your prescription or a doctor&rsquo;s letter. But anything containing a controlled substance needs <a href="https://www.hsa.gov.sg/personal-medication/apply-approval">approval from the Health Sciences Authority</a>, applied for at least two weeks before you arrive. That includes ADHD medicines (such as Adderall, Vyvanse or Ritalin), strong painkillers with codeine or oxycodone, and anxiety or sleep medicines (such as Xanax, Valium, Klonopin or Ambien). <a href="https://www.hsa.gov.sg/travelling-with-medication-and-medical-devices/personal-medications/">HSA&rsquo;s full rules</a></li><li>Nicotine patches or gum bought outside Singapore.</li></ul></div></details><details><summary>How do I get around?</summary><div class="in"><p>The MRT is excellent: tap a contactless card, your phone or a local EZ-Link card at the gate, one each. Taxis are metered and can be flagged down. Uber-style rides are called private hire cars and are booked in an app such as Grab or Gojek. Set the apps up before you leave home. Carry a little cash for hawker stalls. <a href="#getting-around">More on getting around</a></p></div></details><details><summary>Do I need a plug adapter or a voltage converter?</summary><div class="in"><p>Everyone needs a <strong>plug adapter</strong>: Singapore uses UK-style three-pin plugs and 230V power. Phone, laptop and camera chargers almost always say &ldquo;100&ndash;240V&rdquo; on the label, so the adapter is all they need. Anything that says only 110V or 120V, often hair dryers and straighteners, would also need a <strong>voltage converter</strong>; it is usually easier to leave those at home.</p></div></details><details><summary>How early should I arrive in Singapore?</summary><div class="in"><p>At least three days before the wedding if you can. Singapore is 16 hours ahead of Seattle, so expect to wake at 4 am for the first few days. If you can stay longer, see the <a href="#things-to-do">Do</a> page.</p></div></details></div>
     <h3 class="grp">Both celebrations</h3>
-    <div class="acc"><details><summary>Which celebration am I invited to?</summary><div class="in"><p>Both! You are welcome at either celebration, or both, if you would like to come.</p></div></details><details><summary>When will Seattle details be announced?</summary><div class="in"><p>As soon as the date and venue are confirmed.</p></div></details><details id="registry"><summary>Do you have a registry?</summary><div class="in"><p>Not at the moment. If we decide to set one up, we will add the link here. Having you with us, in Singapore or Seattle, is all we could ask for, so please don&rsquo;t feel you need to bring anything.</p></div></details></div>
+    <div class="acc"><details><summary>Which celebration am I invited to?</summary><div class="in"><p>Both! You are welcome at either celebration, or both, if you would like to come.</p></div></details><details><summary>When will Seattle details be announced?</summary><div class="in"><p>As soon as the date and venue are confirmed.</p></div></details><details id="registry-faq"><summary>Do you have a registry?</summary><div class="in"><p>Yes, a short one: see our <a href="#registry">registry page</a>. Having you with us, in Singapore or Seattle, is all we could ask for, so please don&rsquo;t feel you need to bring anything.</p></div></details></div>
 
     <div class="ask" id="ask">
       <h3>Didn&rsquo;t find your answer?</h3>
@@ -1143,8 +1176,8 @@ var RSVP_URL = "https://airtable.com/appozKSLZsYTBl67L/paggfO0ZA5Hy0mhjy/form";
   var pages = document.querySelectorAll("[data-page]");
   var navLinks = document.querySelectorAll(".nav a");
   var close = document.querySelector("section.close");
-  var order = ["home","singapore","travel","eat","things-to-do","seattle","faq","rsvp"];
-  var names = {home:"Home","singapore":"Singapore","seattle":"Seattle","travel":"Travel","things-to-do":"Do","eat":"Eat","faq":"FAQ","rsvp":"RSVP"};
+  var order = ["home","singapore","travel","eat","things-to-do","seattle","faq","registry","rsvp"];
+  var names = {home:"Home","singapore":"Singapore","seattle":"Seattle","travel":"Travel","things-to-do":"Do","eat":"Eat","faq":"FAQ","registry":"Registry","rsvp":"RSVP"};
   // previous / next links at the bottom of each page
   order.forEach(function (v, k) {
     if (v === "home") return;
@@ -1193,6 +1226,76 @@ var RSVP_URL = "https://airtable.com/appozKSLZsYTBl67L/paggfO0ZA5Hy0mhjy/form";
   btn.addEventListener("click", function () { set(!nav.classList.contains("open")); });
   nav.addEventListener("click", function (e) { if (e.target.closest("a")) set(false); });
   document.addEventListener("click", function (e) { if (!nav.contains(e.target)) set(false); });
+})();
+// Registry: items and claims live in Supabase (Remy project). The tables are closed to the public key; the page only calls the registry_* functions.
+// Guests never see who claimed what, and no address is stored. Add or edit items in the registry_items table.
+(function () {
+  var API = "https://ridfiuzmxccenfcvlxbz.supabase.co/rest/v1/rpc/";
+  var KEY = "sb_publishable_mJJV6-r7bI0qty9xZTTewg_fJQNzoXJ";
+  var list = document.getElementById("reg-list");
+  if (!list) return;
+  var STORE = "cp-registry-claims";
+  function mine() { try { return JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { return {}; } }
+  function saveMine(m) { try { localStorage.setItem(STORE, JSON.stringify(m)); } catch (e) {} }
+  function rpc(fn, body) {
+    return fetch(API + fn, { method: "POST", headers: { apikey: KEY, "Content-Type": "application/json" }, body: JSON.stringify(body || {}) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j && j.message || "Something went wrong."); return j; }); });
+  }
+  function esc(t) { var d = document.createElement("div"); d.textContent = t == null ? "" : String(t); return d.innerHTML; }
+  function safeUrl(u) { return /^https?:\/\//i.test(u || "") ? u : ""; }
+  var loaded = false;
+  function render(items) {
+    var m = mine();
+    if (!items.length) { list.innerHTML = '<li class="reg-item noimg"><p class="reg-left">We are still putting the list together. Please check back soon.</p></li>'; return; }
+    list.innerHTML = items.map(function (it) {
+      var left = Math.max(it.qty_wanted - it.qty_claimed, 0), url = safeUrl(it.url), img = safeUrl(it.image_url);
+      var mineHere = (m[it.id] || []);
+      var html = '<li class="reg-item' + (img ? '' : ' noimg') + (left ? '' : ' done') + '" data-id="' + it.id + '">';
+      if (img) html += '<img src="' + esc(img) + '" alt="" loading="lazy">';
+      html += '<h3>' + (url ? '<a href="' + esc(url) + '" rel="noopener" target="_blank">' + esc(it.name) + '</a>' : esc(it.name)) + '</h3>';
+      if (it.description) html += '<p>' + esc(it.description) + '</p>';
+      html += '<p class="reg-left">' + (it.price ? esc(it.price) + ' &middot; ' : '') +
+        (left ? (it.qty_wanted > 1 ? left + ' of ' + it.qty_wanted + ' still needed' : 'Still needed') : 'All taken, thank you!') + '</p>';
+      html += '<div>';
+      if (left) html += '<form class="reg-form"><input type="text" name="n" placeholder="Your name" maxlength="80" required aria-label="Your name">' +
+        (left > 1 ? '<input type="number" name="q" value="1" min="1" max="' + left + '" aria-label="How many">' : '') +
+        '<button class="btn" type="submit">I&rsquo;ll get this</button></form>';
+      if (mineHere.length) html += '<p class="reg-msg">You said you&rsquo;d get ' + mineHere.reduce(function (a, c) { return a + c.q; }, 0) + ' of these. <button type="button" class="linkbtn" data-undo="' + it.id + '">Undo</button></p>';
+      html += '<p class="reg-msg" data-msg hidden></p></div></li>';
+      return html;
+    }).join("");
+  }
+  function load() { return rpc("registry_list").then(function (items) { loaded = true; render(items); })
+    .catch(function () { list.innerHTML = '<li class="reg-item noimg"><p class="reg-left">The list could not load just now. Please try again in a moment.</p></li>'; }); }
+  list.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = e.target, li = f.closest(".reg-item"), id = +li.getAttribute("data-id");
+    var name = f.n.value.trim(), q = f.q ? Math.max(1, parseInt(f.q.value, 10) || 1) : 1, btn = f.querySelector("button");
+    if (!name) return;
+    btn.disabled = true;
+    rpc("registry_claim", { p_item_id: id, p_name: name, p_qty: q }).then(function (r) {
+      var m = mine(); (m[id] = m[id] || []).push({ c: r[0].claim_id, q: q }); saveMine(m);
+      return load().then(function () {
+        var msg = list.querySelector('[data-id="' + id + '"] [data-msg]');
+        if (msg) { msg.textContent = "Thank you, " + name + "! It’s marked as yours."; msg.hidden = false; }
+      });
+    }).catch(function (err) {
+      btn.disabled = false;
+      var msg = li.querySelector("[data-msg]"); msg.textContent = err.message; msg.hidden = false;
+      load();
+    });
+  });
+  list.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-undo]"); if (!b) return;
+    var id = b.getAttribute("data-undo"), m = mine(), claims = m[id] || [];
+    b.disabled = true;
+    Promise.all(claims.map(function (c) { return rpc("registry_unclaim", { p_claim_id: c.c }); }))
+      .then(function () { delete m[id]; saveMine(m); load(); })
+      .catch(function () { b.disabled = false; });
+  });
+  function maybeLoad() { if (document.body.getAttribute("data-view") === "registry" && !loaded) load(); }
+  window.addEventListener("hashchange", maybeLoad);
+  maybeLoad();
 })();
 </script>
 
