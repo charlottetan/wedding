@@ -295,7 +295,8 @@ section[data-page]:not(.explore) { padding-top: clamp(36px, 6vw, 64px); }
 .reg-go:focus-visible, .reg-cat:focus-visible { outline: 2px solid var(--orchid); outline-offset: 3px; }
 .reg-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .reg-form input { font: inherit; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 2px; background: #fff; color: var(--plum); }
-.reg-form input[type=text] { flex: 1 1 100%; min-width: 0; }
+.reg-form input[type=text], .reg-form textarea { flex: 1 1 100%; min-width: 0; }
+.reg-form textarea { font: inherit; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 2px; background: #fff; color: var(--plum); resize: vertical; }
 .reg-form input[type=number] { width: 4.5rem; }
 .reg-form .btn { margin-top: 0; border: 0; cursor: pointer; font-family: var(--body); padding: 11px 18px; }
 .reg-msg { font-size: 14.5px; color: var(--orchid); }
@@ -1400,6 +1401,7 @@ var RSVP_URL = "https://airtable.com/appozKSLZsYTBl67L/paggfO0ZA5Hy0mhjy/form";
     html += '</div>';
     if (left && !isOpen) html += '<div class="reg-act"><button type="button" class="reg-go" data-open="' + it.id + '">I&rsquo;ll get this</button></div>';
     if (isOpen) html += '<form class="reg-form"><input type="text" name="n" placeholder="Your name" maxlength="80" required aria-label="Your name">' +
+      '<textarea name="t" rows="2" maxlength="500" placeholder="Add a note for us (optional)" aria-label="A note for Charlotte and Preston (optional)"></textarea>' +
       (left > 1 ? '<input type="number" name="q" value="1" min="1" max="' + left + '" aria-label="How many">' : '') +
       '<button class="btn" type="submit">Confirm</button><button type="button" class="linkbtn" data-cancel>Cancel</button></form>';
     if (mineHere.length) html += '<p class="reg-msg">You said you&rsquo;d get ' + (it.qty_wanted > 1 ? mineHere.reduce(function (a, c) { return a + c.q; }, 0) + ' of these' : 'this') + '. <button type="button" class="linkbtn" data-undo="' + it.id + '">Undo</button></p>';
@@ -1441,10 +1443,10 @@ var RSVP_URL = "https://airtable.com/appozKSLZsYTBl67L/paggfO0ZA5Hy0mhjy/form";
   list.addEventListener("submit", function (e) {
     e.preventDefault();
     var f = e.target, li = f.closest(".reg-item"), id = +li.getAttribute("data-id");
-    var name = f.n.value.trim(), q = f.q ? Math.max(1, parseInt(f.q.value, 10) || 1) : 1, btn = f.querySelector("button");
+    var name = f.n.value.trim(), noteTxt = f.t ? f.t.value.trim() : "", q = f.q ? Math.max(1, parseInt(f.q.value, 10) || 1) : 1, btn = f.querySelector("button");
     if (!name) return;
     btn.disabled = true;
-    rpc("registry_claim_v2", { p_item_id: id, p_name: name, p_qty: q }).then(function (r) {
+    rpc("registry_claim_v2", { p_item_id: id, p_name: name, p_qty: q, p_note: noteTxt || null }).then(function (r) {
       var m = mine(); (m[id] = m[id] || []).push({ c: r[0].claim_id, q: q, n: r[0].after_claim || "" }); saveMine(m);
       open = null; flash = { id: id, msg: "Thank you, " + name + "! It’s marked as yours." };
       return load();
