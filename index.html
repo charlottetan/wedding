@@ -299,6 +299,7 @@ section[data-page]:not(.explore) { padding-top: clamp(36px, 6vw, 64px); }
 .reg-form input[type=number] { width: 4.5rem; }
 .reg-form .btn { margin-top: 0; border: 0; cursor: pointer; font-family: var(--body); padding: 11px 18px; }
 .reg-msg { font-size: 14.5px; color: var(--orchid); }
+.reg-after { color: var(--plum); border-left: 2px solid var(--orchid); padding-left: 10px; }
 .reg-note { font-size: 14.5px; color: var(--plum-soft); }
 @media (max-width: 520px) { .reg-hide { flex: 1 1 100%; } }
 .linkbtn { background: none; border: 0; padding: 0; font: inherit; color: var(--orchid); text-decoration: underline; cursor: pointer; }
@@ -1362,6 +1363,8 @@ var RSVP_URL = "https://airtable.com/appozKSLZsYTBl67L/paggfO0ZA5Hy0mhjy/form";
       (left > 1 ? '<input type="number" name="q" value="1" min="1" max="' + left + '" aria-label="How many">' : '') +
       '<button class="btn" type="submit">Confirm</button><button type="button" class="linkbtn" data-cancel>Cancel</button></form>';
     if (mineHere.length) html += '<p class="reg-msg">You said you&rsquo;d get ' + (it.qty_wanted > 1 ? mineHere.reduce(function (a, c) { return a + c.q; }, 0) + ' of these' : 'this') + '. <button type="button" class="linkbtn" data-undo="' + it.id + '">Undo</button></p>';
+    var after = mineHere.map(function (c) { return c.n || ""; }).filter(Boolean)[0];
+    if (after) html += '<p class="reg-msg reg-after">' + esc(after) + '</p>';
     var f = flash && flash.id === it.id ? flash.msg : "";
     html += '<p class="reg-msg" data-msg' + (f ? '>' + esc(f) : ' hidden>') + '</p></li>';
     return html;
@@ -1401,8 +1404,8 @@ var RSVP_URL = "https://airtable.com/appozKSLZsYTBl67L/paggfO0ZA5Hy0mhjy/form";
     var name = f.n.value.trim(), q = f.q ? Math.max(1, parseInt(f.q.value, 10) || 1) : 1, btn = f.querySelector("button");
     if (!name) return;
     btn.disabled = true;
-    rpc("registry_claim", { p_item_id: id, p_name: name, p_qty: q }).then(function (r) {
-      var m = mine(); (m[id] = m[id] || []).push({ c: r[0].claim_id, q: q }); saveMine(m);
+    rpc("registry_claim_v2", { p_item_id: id, p_name: name, p_qty: q }).then(function (r) {
+      var m = mine(); (m[id] = m[id] || []).push({ c: r[0].claim_id, q: q, n: r[0].after_claim || "" }); saveMine(m);
       open = null; flash = { id: id, msg: "Thank you, " + name + "! It’s marked as yours." };
       return load();
     }).catch(function (err) {
